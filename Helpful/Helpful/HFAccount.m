@@ -10,6 +10,13 @@
 
 @implementation HFAccount
 
+#pragma mark - NSObject
+
+- (NSString *)description {
+    static NSString *format = @"<%@: %p accountID:%@ name:%@ slug:%@ createdAt:%@ updatedAt:%@>";
+    return [NSString stringWithFormat:format, NSStringFromClass(self.class), self, self.accountID, self.name, self.slug, self.createdAt, self.updatedAt];
+}
+
 #pragma mark - RestKit Additions
 
 + (RKObjectMapping *)objectMapping {
