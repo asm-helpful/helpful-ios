@@ -1,1 +1,2 @@
 pod "RestKit"
+pod "FXKeychain"
