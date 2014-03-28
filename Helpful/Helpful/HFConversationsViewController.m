@@ -8,14 +8,16 @@
 
 #import "HFConversationsViewController.h"
 
-#import "HFAccount.h"
+#import "HFCredentials.h"
 #import "HFLoginViewController.h"
 
-@interface HFConversationsViewController ()
+@interface HFConversationsViewController () <HFLoginViewControllerDelegate>
 
 @end
 
 @implementation HFConversationsViewController
+
+#pragma mark - UIViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,21 +28,29 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    HFCredentials *credentials = [HFCredentials defaultCredentials];
+    if (!credentials.complete) {
+        HFLoginViewController *controller = [[HFLoginViewController alloc] initWithCredentials:credentials];
+        controller.delegate = self;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+        [self presentViewController:navigationController animated:YES completion:NULL];
+    }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - HFLoginViewControllerDelegate
+
+- (void)loginViewControllerDidCancel:(HFLoginViewController *)controller {
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)loginViewController:(HFLoginViewController *)controller didLogIntoAccounts:(NSSet *)accounts {
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+    NSLog(@"%@", accounts);
+    
+    // TODO: fetch!
 }
 
 #pragma mark - Table view data source

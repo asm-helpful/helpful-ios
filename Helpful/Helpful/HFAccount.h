@@ -7,24 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
 
 @interface HFAccount : NSObject
 
-/// Returns the default account.
-+ (instancetype)defaultAccount;
+@property (nonatomic, copy) NSString *accountID;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *slug;
+@property (nonatomic, strong) NSDate *createdAt;
+@property (nonatomic, strong) NSDate *updatedAt;
 
-/// The username of the account.
-@property (nonatomic, copy, readonly) NSString *username;
+@end
 
-/// The password of the account.
-@property (nonatomic, copy, readonly) NSString *password;
 
-/// Indicates if the account has a proper username and password set.
-/// @warning This propery does not indicate if the account actually has a
-/// valid username/password!
-@property (nonatomic, assign, readonly, getter = isComplete) BOOL complete;
+@interface HFAccount (RestKitAdditions)
 
-/// Updates the username and password and persists those values to disk.
-- (void)setUsername:(NSString *)username password:(NSString *)password;
++ (RKObjectMapping *)objectMapping;
++ (RKObjectRequestOperation *)accountsRequestOperation;
 
 @end

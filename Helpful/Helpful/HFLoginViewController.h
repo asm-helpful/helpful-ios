@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class HFAccount;
+@class HFCredentials;
 @protocol HFLoginViewControllerDelegate;
 
 @interface HFLoginViewController : UIViewController
 
-- (instancetype)initWithAccount:(HFAccount *)account;
+- (instancetype)initWithCredentials:(HFCredentials *)credentials;
 
-@property (nonatomic, strong, readonly) HFAccount *account;
+@property (nonatomic, strong, readonly) HFCredentials *credentials;
 
 @property (nonatomic, weak) id <HFLoginViewControllerDelegate> delegate;
 
@@ -24,11 +24,17 @@
 
 @property (nonatomic, assign, readonly, getter = isValidating) BOOL validating;
 
+/// @name Outlets
+
+@property (nonatomic, strong) IBOutlet UITextField *usernameTextField;
+@property (nonatomic, strong) IBOutlet UITextField *passwordTextField;
+- (IBAction)textFieldDidChange:(UITextField *)textField;
+
 @end
 
 @protocol HFLoginViewControllerDelegate <NSObject>
 
 - (void)loginViewControllerDidCancel:(HFLoginViewController *)controller;
-- (void)loginViewController:(HFLoginViewController *)controller didLogIntoAccount:(HFAccount *)account;
+- (void)loginViewController:(HFLoginViewController *)controller didLogIntoAccounts:(NSSet *)accounts;
 
 @end
