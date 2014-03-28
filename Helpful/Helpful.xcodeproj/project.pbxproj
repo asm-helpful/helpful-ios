@@ -14,8 +14,6 @@
 		756BF6B1184B389100423025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 756BF6AF184B389100423025 /* InfoPlist.strings */; };
 		756BF6B3184B389100423025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 756BF6B2184B389100423025 /* main.m */; };
 		756BF6B7184B389100423025 /* HFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 756BF6B6184B389100423025 /* HFAppDelegate.m */; };
-		756BF6BA184B389100423025 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756BF6B8184B389100423025 /* Main.storyboard */; };
-		756BF6BD184B389100423025 /* HFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756BF6BC184B389100423025 /* HFViewController.m */; };
 		756BF6BF184B389100423025 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 756BF6BE184B389100423025 /* Images.xcassets */; };
 		756BF6C6184B389100423025 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756BF6C5184B389100423025 /* XCTest.framework */; };
 		756BF6C7184B389100423025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756BF6A6184B389000423025 /* Foundation.framework */; };
@@ -25,6 +23,7 @@
 		8C30DDD918E60C0E00FC80F8 /* HFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C30DDD718E60C0E00FC80F8 /* HFLoginViewController.m */; };
 		8C30DDDA18E60C0E00FC80F8 /* HFLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C30DDD818E60C0E00FC80F8 /* HFLoginViewController.xib */; };
 		8C30DDDE18E60C7200FC80F8 /* HFAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C30DDDD18E60C7200FC80F8 /* HFAccount.m */; };
+		8CC5A2FC18E611C100177D11 /* HFConversationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5A2FB18E611C100177D11 /* HFConversationsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +48,6 @@
 		756BF6B4184B389100423025 /* Helpful-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Helpful-Prefix.pch"; sourceTree = "<group>"; };
 		756BF6B5184B389100423025 /* HFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HFAppDelegate.h; sourceTree = "<group>"; };
 		756BF6B6184B389100423025 /* HFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HFAppDelegate.m; sourceTree = "<group>"; };
-		756BF6B9184B389100423025 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		756BF6BB184B389100423025 /* HFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HFViewController.h; sourceTree = "<group>"; };
-		756BF6BC184B389100423025 /* HFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HFViewController.m; sourceTree = "<group>"; };
 		756BF6BE184B389100423025 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		756BF6C4184B389100423025 /* HelpfulTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelpfulTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		756BF6C5184B389100423025 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -63,6 +59,8 @@
 		8C30DDD818E60C0E00FC80F8 /* HFLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HFLoginViewController.xib; sourceTree = "<group>"; };
 		8C30DDDC18E60C7200FC80F8 /* HFAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFAccount.h; sourceTree = "<group>"; };
 		8C30DDDD18E60C7200FC80F8 /* HFAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFAccount.m; sourceTree = "<group>"; };
+		8CC5A2FA18E611C100177D11 /* HFConversationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFConversationsViewController.h; sourceTree = "<group>"; };
+		8CC5A2FB18E611C100177D11 /* HFConversationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFConversationsViewController.m; sourceTree = "<group>"; };
 		FD42303A95334A59B19E59F6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,14 +127,13 @@
 				8C30DDDB18E60C6000FC80F8 /* Models */,
 				756BF6B5184B389100423025 /* HFAppDelegate.h */,
 				756BF6B6184B389100423025 /* HFAppDelegate.m */,
-				756BF6B8184B389100423025 /* Main.storyboard */,
-				756BF6BB184B389100423025 /* HFViewController.h */,
-				756BF6BC184B389100423025 /* HFViewController.m */,
-				756BF6BE184B389100423025 /* Images.xcassets */,
-				756BF6AD184B389100423025 /* Supporting Files */,
 				8C30DDD618E60C0E00FC80F8 /* HFLoginViewController.h */,
 				8C30DDD718E60C0E00FC80F8 /* HFLoginViewController.m */,
 				8C30DDD818E60C0E00FC80F8 /* HFLoginViewController.xib */,
+				756BF6BE184B389100423025 /* Images.xcassets */,
+				756BF6AD184B389100423025 /* Supporting Files */,
+				8CC5A2FA18E611C100177D11 /* HFConversationsViewController.h */,
+				8CC5A2FB18E611C100177D11 /* HFConversationsViewController.m */,
 			);
 			path = Helpful;
 			sourceTree = "<group>";
@@ -261,7 +258,6 @@
 				8C30DDDA18E60C0E00FC80F8 /* HFLoginViewController.xib in Resources */,
 				756BF6BF184B389100423025 /* Images.xcassets in Resources */,
 				756BF6B1184B389100423025 /* InfoPlist.strings in Resources */,
-				756BF6BA184B389100423025 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,10 +310,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C30DDD918E60C0E00FC80F8 /* HFLoginViewController.m in Sources */,
-				756BF6BD184B389100423025 /* HFViewController.m in Sources */,
 				756BF6B7184B389100423025 /* HFAppDelegate.m in Sources */,
 				8C30DDDE18E60C7200FC80F8 /* HFAccount.m in Sources */,
 				756BF6B3184B389100423025 /* main.m in Sources */,
+				8CC5A2FC18E611C100177D11 /* HFConversationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,14 +342,6 @@
 				756BF6B0184B389100423025 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		756BF6B8184B389100423025 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				756BF6B9184B389100423025 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		756BF6CE184B389100423025 /* InfoPlist.strings */ = {

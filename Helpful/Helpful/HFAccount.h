@@ -19,6 +19,11 @@
 /// The password of the account.
 @property (nonatomic, copy, readonly) NSString *password;
 
+/// Indicates if the account has a proper username and password set.
+/// @warning This propery does not indicate if the account actually has a
+/// valid username/password!
+@property (nonatomic, assign, readonly, getter = isComplete) BOOL complete;
+
 /// Updates the username and password and persists those values to disk.
 - (void)setUsername:(NSString *)username password:(NSString *)password;
 

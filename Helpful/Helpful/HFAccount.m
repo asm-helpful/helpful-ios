@@ -63,6 +63,10 @@ static NSString *const HFAccountUsernameKey = @"HFAccountUsernameKey";
     }
 }
 
+- (BOOL)isComplete {
+    return (self.username.length > 0 && self.password.length > 0);
+}
+
 #pragma mark - Private Methods
 
 - (void)hf_loadUsername {
