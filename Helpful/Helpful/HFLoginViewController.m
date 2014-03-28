@@ -101,7 +101,6 @@
     [self hf_updateUserInterface];
     
     // Present alert view.
-    // TODO: refine text
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid Credentials", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     [alertView show];
 }
