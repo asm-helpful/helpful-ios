@@ -8,6 +8,7 @@
 
 #import "HFConversation.h"
 #import "HFMessage.h"
+#import "HFAccount.h"
 
 @implementation HFConversation
 
@@ -38,6 +39,15 @@
         // TODO: map tags
     });
     return mapping;
+}
+
++ (RKObjectRequestOperation *)fetchConversationsRequestOperationForAccount:(HFAccount *)account {
+    RKObjectMapping *mapping = [self objectMapping];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:nil keyPath:@"conversations" statusCodes:nil];
+    NSDictionary *params = @{@"account": account.accountID};
+    NSURLRequest *request = [[RKObjectManager sharedManager] requestWithObject:nil method:RKRequestMethodGET path:@"/api/conversations" parameters:params];
+    RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
+    return operation;
 }
 
 @end

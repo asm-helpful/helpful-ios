@@ -18,6 +18,8 @@
  "tags": [],
  "messages": [*/
 
+@class HFAccount;
+
 @interface HFConversation : NSObject
 
 @property (nonatomic, copy) NSString *conversationID;
@@ -36,5 +38,6 @@
 @interface HFConversation (RestKitAdditions)
 
 + (RKObjectMapping *)objectMapping;
++ (RKObjectRequestOperation *)fetchConversationsRequestOperationForAccount:(HFAccount *)account;
 
 @end
