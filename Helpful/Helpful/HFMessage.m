@@ -25,7 +25,7 @@
     dispatch_once(&onceToken, ^{
         mapping = [RKObjectMapping mappingForClass:self];
         [mapping addAttributeMappingsFromDictionary:@{@"id": @"messageID",
-                                                      @"subject": @"body",
+                                                      @"body": @"body",
                                                       @"created": @"created",
                                                       @"updated": @"updated"}];
         

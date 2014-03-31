@@ -21,7 +21,8 @@
 
 - (void)hf_presentLoginViewController;
 - (void)hf_fetchAccounts;
-- (void)hf_configureTableViewCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)hf_configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)hf_presentConversationsForAccount:(HFAccount *)account;
 
 @end
 
@@ -88,7 +89,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    [self hf_configureTableViewCell:cell atIndexPath:indexPath];
+    [self hf_configureCell:cell atIndexPath:indexPath];
     
     return cell;
 }
@@ -121,7 +122,7 @@
     [operation start];
 }
 
-- (void)hf_configureTableViewCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)hf_configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     HFAccount *account = self.accounts[indexPath.row];
     cell.textLabel.text = account.name;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

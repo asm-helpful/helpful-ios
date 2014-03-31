@@ -15,5 +15,6 @@
 - (id)initWithAccount:(HFAccount *)account;
 
 @property (nonatomic, strong, readonly) HFAccount *account;
+@property (nonatomic, copy, readonly) NSArray *conversations;
 
 @end
