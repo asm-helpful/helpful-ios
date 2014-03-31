@@ -33,7 +33,7 @@
     return mapping;
 }
 
-+ (RKObjectRequestOperation *)accountsRequestOperation {
++ (RKObjectRequestOperation *)fetchAccountsRequestOperation {
     RKObjectMapping *mapping = [self objectMapping];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:nil keyPath:@"accounts" statusCodes:nil];
     NSURLRequest *request = [[RKObjectManager sharedManager] requestWithObject:nil method:RKRequestMethodGET path:@"/api/accounts" parameters:nil];

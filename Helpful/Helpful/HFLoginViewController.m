@@ -76,7 +76,7 @@
     [client setAuthorizationHeaderWithUsername:self.username password:self.password];
     
     // Fetch all accounts.
-    RKObjectRequestOperation *operation = [HFAccount accountsRequestOperation];
+    RKObjectRequestOperation *operation = [HFAccount fetchAccountsRequestOperation];
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         [self hf_validationDidFinishWithAccounts:[mappingResult set]];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {

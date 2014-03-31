@@ -23,6 +23,6 @@
 @interface HFAccount (RestKitAdditions)
 
 + (RKObjectMapping *)objectMapping;
-+ (RKObjectRequestOperation *)accountsRequestOperation;
++ (RKObjectRequestOperation *)fetchAccountsRequestOperation;
 
 @end
