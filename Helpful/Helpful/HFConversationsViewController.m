@@ -7,6 +7,7 @@
 //
 
 #import "HFConversationsViewController.h"
+#import "HFAccount.h"
 
 @interface HFConversationsViewController ()
 
@@ -16,11 +17,11 @@
 
 #pragma mark - UIViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+- (id)initWithAccount:(HFAccount *)account {
+    if ((self = [super initWithStyle:UITableViewStylePlain])) {
+        _account = account;
+        
+        self.title = NSLocalizedString(@"Conversations", nil);
     }
     return self;
 }

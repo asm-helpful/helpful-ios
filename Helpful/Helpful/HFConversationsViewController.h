@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class HFAccount;
+
 @interface HFConversationsViewController : UITableViewController
+
+- (id)initWithAccount:(HFAccount *)account;
+
+@property (nonatomic, strong, readonly) HFAccount *account;
 
 @end
