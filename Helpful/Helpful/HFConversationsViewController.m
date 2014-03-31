@@ -8,10 +8,7 @@
 
 #import "HFConversationsViewController.h"
 
-#import "HFCredentials.h"
-#import "HFLoginViewController.h"
-
-@interface HFConversationsViewController () <HFLoginViewControllerDelegate>
+@interface HFConversationsViewController ()
 
 @end
 
@@ -26,31 +23,6 @@
         // Custom initialization
     }
     return self;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    HFCredentials *credentials = [HFCredentials defaultCredentials];
-    if (!credentials.complete) {
-        HFLoginViewController *controller = [[HFLoginViewController alloc] initWithCredentials:credentials];
-        controller.delegate = self;
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-        [self presentViewController:navigationController animated:YES completion:NULL];
-    }
-}
-
-#pragma mark - HFLoginViewControllerDelegate
-
-- (void)loginViewControllerDidCancel:(HFLoginViewController *)controller {
-    [controller dismissViewControllerAnimated:YES completion:NULL];
-}
-
-- (void)loginViewController:(HFLoginViewController *)controller didLogIntoAccounts:(NSSet *)accounts {
-    [controller dismissViewControllerAnimated:YES completion:NULL];
-    NSLog(@"%@", accounts);
-    
-    // TODO: fetch!
 }
 
 #pragma mark - Table view data source

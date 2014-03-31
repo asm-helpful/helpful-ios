@@ -9,7 +9,7 @@
 #import <RestKit/RestKit.h>
 
 #import "HFAppDelegate.h"
-#import "HFConversationsViewController.h"
+#import "HFAccountsViewController.h"
 #import "HFCredentials.h"
 
 @implementation HFAppDelegate
@@ -24,7 +24,7 @@
     
     // Load the initial controller stack. We have a navigation controller, that
     // contains the conversations view controller.
-    HFConversationsViewController *viewController = [[HFConversationsViewController alloc] init];
+    HFAccountsViewController *viewController = [[HFAccountsViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     
     // Make the navigation controller the root controller of the window, thereby
