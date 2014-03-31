@@ -14,8 +14,8 @@
 @property (nonatomic, copy) NSString *accountID;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *slug;
-@property (nonatomic, strong) NSDate *createdAt;
-@property (nonatomic, strong) NSDate *updatedAt;
+@property (nonatomic, strong) NSDate *created;
+@property (nonatomic, strong) NSDate *updated;
 
 @end
 

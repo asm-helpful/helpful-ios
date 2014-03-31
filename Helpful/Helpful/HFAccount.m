@@ -13,19 +13,23 @@
 #pragma mark - NSObject
 
 - (NSString *)description {
-    static NSString *format = @"<%@: %p accountID:%@ name:%@ slug:%@ createdAt:%@ updatedAt:%@>";
-    return [NSString stringWithFormat:format, NSStringFromClass(self.class), self, self.accountID, self.name, self.slug, self.createdAt, self.updatedAt];
+    static NSString *format = @"<%@: %p accountID:%@ name:%@ slug:%@ created:%@ updated:%@>";
+    return [NSString stringWithFormat:format, NSStringFromClass(self.class), self, self.accountID, self.name, self.slug, self.created, self.updated];
 }
 
 #pragma mark - RestKit Additions
 
 + (RKObjectMapping *)objectMapping {
-    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:self];
-    [mapping addAttributeMappingsFromDictionary:@{@"id": @"accountID",
-                                                  @"name": @"name",
-                                                  @"slug": @"slug",
-                                                  @"created": @"createdAt",
-                                                  @"updated": @"updatedAt"}];
+    static RKObjectMapping *mapping;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        mapping = [RKObjectMapping mappingForClass:self];
+        [mapping addAttributeMappingsFromDictionary:@{@"id": @"accountID",
+                                                      @"name": @"name",
+                                                      @"slug": @"slug",
+                                                      @"created": @"created",
+                                                      @"updated": @"updated"}];
+    });
     return mapping;
 }
 
