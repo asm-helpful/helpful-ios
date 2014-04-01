@@ -46,7 +46,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (self.conversations.count == 0) {
+    if (!self.conversations) {
         [self hf_fetchConversations];
     }
 }
