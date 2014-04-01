@@ -9,24 +9,28 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 
-/*"created": "2014-03-06T19:17:30Z",
- "updated": "2014-03-06T19 :19:47Z",
- "id": "51ee56a7-f57a-4694-b0e8-ef0f058682bf",
- "type": "conversation",
- "number": 1,
- "subject": "Email seems to be down",
- "tags": [],
- "messages": [*/
-
 @class HFAccount;
 
+/// Represents a conversation.
 @interface HFConversation : NSObject
 
+/// The unqiue ID.
 @property (nonatomic, copy) NSString *conversationID;
+
+/// The subject. Optional.
 @property (nonatomic, copy) NSString *subject;
+
+/// The date the conversation was created.
 @property (nonatomic, strong) NSDate *created;
+
+/// The date the conversation was updated.
 @property (nonatomic, strong) NSDate *updated;
+
+// A set of tags. Optional.
+// TODO: implement this!
 @property (nonatomic, copy) NSSet *tags;
+
+// An array of messages. Always contains at least one message.
 @property (nonatomic, copy) NSArray *messages;
 
 // TODO: what's the purpose of this?
@@ -37,7 +41,10 @@
 
 @interface HFConversation (RestKitAdditions)
 
+/// Returns the RestKit mapping.
 + (RKObjectMapping *)objectMapping;
+
+/// Returns an operation that can be used to fetch all conversations for a given account.
 + (RKObjectRequestOperation *)fetchConversationsRequestOperationForAccount:(HFAccount *)account;
 
 @end

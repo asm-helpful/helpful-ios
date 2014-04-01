@@ -9,34 +9,35 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 
-/*
- {
- "created": "2014-03-06T19:18:52Z",
- "updated": "2014-03-06T19:18:52Z",
- "id": "ee21d726-f46d-45f3-b39c-c3d9ab87c078",
- "type": "message",
- "body": "I tried to send you an email a few minutes ago, but I received a delivery notification saying your email address doesn't exist.",
- "conversation_id": "51ee56a7-f57a-4694-b0e8-ef0f058682bf",
- "person_id":"3ad45600-b8d5-42da-b43e-d837d8d67ab9"
- }
- */
-
 @class HFConversation, HFPerson;
 
+/// Represents a message in a conversation.
 @interface HFMessage : NSObject
 
+/// The unique ID.
 @property (nonatomic, copy) NSString *messageID;
+
+/// The unique ID of the conversation this message is part of.
+@property (nonatomic, copy) NSString *conversationID;
+
+/// The unique ID of the person that created that message.
+@property (nonatomic, copy) NSString *personID;
+
+/// The body of the message.
 @property (nonatomic, copy) NSString *body;
+
+/// The date the message was created.
 @property (nonatomic, strong) NSDate *created;
+
+/// THe date the messages was updated.
 @property (nonatomic, strong) NSDate *updated;
-@property (nonatomic, weak) HFConversation *conversation;
-@property (nonatomic, strong) HFPerson *person;
 
 @end
 
 
 @interface HFMessage (RestKitAdditions)
 
+/// Returns the RestKit mapping.
 + (RKObjectMapping *)objectMapping;
 
 @end

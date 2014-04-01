@@ -29,7 +29,8 @@
         NSDictionary *dict = @{@"id": HFTypedKeyPath(HFConversation, conversationID),
                                @"subject": HFTypedKeyPath(HFConversation, subject),
                                @"created": HFTypedKeyPath(HFConversation, created),
-                               @"updated": HFTypedKeyPath(HFConversation, updated)};
+                               @"updated": HFTypedKeyPath(HFConversation, updated),
+                               @"number": HFTypedKeyPath(HFConversation, number)};
         [mapping addAttributeMappingsFromDictionary:dict];
         
         // Add message relationship mapping.
