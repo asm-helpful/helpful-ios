@@ -53,7 +53,7 @@
     HFCredentials *credentials = [HFCredentials defaultCredentials];
     if (!credentials.complete) {
         [self hf_presentLoginViewController];
-    } else if (self.accounts.count == 0) {
+    } else if (!self.accounts) {
         [self hf_fetchAccounts];
     }
 }
