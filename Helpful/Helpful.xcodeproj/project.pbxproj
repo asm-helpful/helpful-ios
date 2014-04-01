@@ -139,20 +139,12 @@
 		756BF6AC184B389100423025 /* Helpful */ = {
 			isa = PBXGroup;
 			children = (
+				8C99CB2418EB5209005AF237 /* Controllers */,
 				8C30DDDB18E60C6000FC80F8 /* Models */,
 				756BF6B5184B389100423025 /* HFAppDelegate.h */,
 				756BF6B6184B389100423025 /* HFAppDelegate.m */,
-				8C30DDD618E60C0E00FC80F8 /* HFLoginViewController.h */,
-				8C30DDD718E60C0E00FC80F8 /* HFLoginViewController.m */,
-				8C30DDD818E60C0E00FC80F8 /* HFLoginViewController.xib */,
 				756BF6BE184B389100423025 /* Images.xcassets */,
 				756BF6AD184B389100423025 /* Supporting Files */,
-				8CC5A2FA18E611C100177D11 /* HFConversationsViewController.h */,
-				8CC5A2FB18E611C100177D11 /* HFConversationsViewController.m */,
-				8C67C01A18E9D86800A7BC51 /* HFAccountsViewController.h */,
-				8C67C01B18E9D86800A7BC51 /* HFAccountsViewController.m */,
-				8C67C01D18EAB6C800A7BC51 /* HFConstants.h */,
-				8C67C01E18EAB6C800A7BC51 /* HFConstants.m */,
 			);
 			path = Helpful;
 			sourceTree = "<group>";
@@ -160,6 +152,8 @@
 		756BF6AD184B389100423025 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8C67C01D18EAB6C800A7BC51 /* HFConstants.h */,
+				8C67C01E18EAB6C800A7BC51 /* HFConstants.m */,
 				756BF6AE184B389100423025 /* Helpful-Info.plist */,
 				756BF6AF184B389100423025 /* InfoPlist.strings */,
 				756BF6B2184B389100423025 /* main.m */,
@@ -199,6 +193,20 @@
 				8C67C01518E9D40900A7BC51 /* HFMessage.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		8C99CB2418EB5209005AF237 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8C30DDD618E60C0E00FC80F8 /* HFLoginViewController.h */,
+				8C30DDD718E60C0E00FC80F8 /* HFLoginViewController.m */,
+				8C30DDD818E60C0E00FC80F8 /* HFLoginViewController.xib */,
+				8CC5A2FA18E611C100177D11 /* HFConversationsViewController.h */,
+				8CC5A2FB18E611C100177D11 /* HFConversationsViewController.m */,
+				8C67C01A18E9D86800A7BC51 /* HFAccountsViewController.h */,
+				8C67C01B18E9D86800A7BC51 /* HFAccountsViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
