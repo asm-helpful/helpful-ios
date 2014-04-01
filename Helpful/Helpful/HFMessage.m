@@ -24,10 +24,11 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         mapping = [RKObjectMapping mappingForClass:self];
-        [mapping addAttributeMappingsFromDictionary:@{@"id": @"messageID",
-                                                      @"body": @"body",
-                                                      @"created": @"created",
-                                                      @"updated": @"updated"}];
+        NSDictionary *dict = @{@"id": HFTypedKeyPath(HFMessage, messageID),
+                               @"body": HFTypedKeyPath(HFMessage, body),
+                               @"created": HFTypedKeyPath(HFMessage, created),
+                               @"updated": HFTypedKeyPath(HFMessage, updated)};
+        [mapping addAttributeMappingsFromDictionary:dict];
         
         // TODO: figure out how to do reverse stuff and how to extract the person id
     });

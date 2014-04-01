@@ -24,19 +24,23 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         mapping = [RKObjectMapping mappingForClass:self];
-        [mapping addAttributeMappingsFromDictionary:@{@"id": @"accountID",
-                                                      @"name": @"name",
-                                                      @"slug": @"slug",
-                                                      @"created": @"created",
-                                                      @"updated": @"updated"}];
+        NSDictionary *dict = @{@"id": HFTypedKeyPath(HFAccount, accountID),
+                               @"name": HFTypedKeyPath(HFAccount, name),
+                               @"slug": HFTypedKeyPath(HFAccount, slug),
+                               @"created": HFTypedKeyPath(HFAccount, created),
+                               @"updated": HFTypedKeyPath(HFAccount, updated)};
+        [mapping addAttributeMappingsFromDictionary:dict];
     });
     return mapping;
 }
 
 + (RKObjectRequestOperation *)fetchAccountsRequestOperation {
+    static NSString *collectionKeyPath = @"accounts";
+    static NSString *requestPath = @"/api/accounts";
+    
     RKObjectMapping *mapping = [self objectMapping];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:nil keyPath:@"accounts" statusCodes:nil];
-    NSURLRequest *request = [[RKObjectManager sharedManager] requestWithObject:nil method:RKRequestMethodGET path:@"/api/accounts" parameters:nil];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:nil keyPath:collectionKeyPath statusCodes:nil];
+    NSURLRequest *request = [[RKObjectManager sharedManager] requestWithObject:nil method:RKRequestMethodGET path:requestPath parameters:nil];
     RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
     return operation;
 }

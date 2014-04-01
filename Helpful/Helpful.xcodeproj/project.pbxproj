@@ -27,6 +27,7 @@
 		8C67C01618E9D40900A7BC51 /* HFMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C01518E9D40900A7BC51 /* HFMessage.m */; };
 		8C67C01918E9D47600A7BC51 /* HFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C01818E9D47600A7BC51 /* HFPerson.m */; };
 		8C67C01C18E9D86800A7BC51 /* HFAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C01B18E9D86800A7BC51 /* HFAccountsViewController.m */; };
+		8C67C01F18EAB6C800A7BC51 /* HFConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C01E18EAB6C800A7BC51 /* HFConstants.m */; };
 		8CC5A2FC18E611C100177D11 /* HFConversationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5A2FB18E611C100177D11 /* HFConversationsViewController.m */; };
 		8CC5A2FF18E61C5A00177D11 /* HFAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5A2FE18E61C5A00177D11 /* HFAccount.m */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,8 @@
 		8C67C01818E9D47600A7BC51 /* HFPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFPerson.m; sourceTree = "<group>"; };
 		8C67C01A18E9D86800A7BC51 /* HFAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFAccountsViewController.h; sourceTree = "<group>"; };
 		8C67C01B18E9D86800A7BC51 /* HFAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFAccountsViewController.m; sourceTree = "<group>"; };
+		8C67C01D18EAB6C800A7BC51 /* HFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFConstants.h; sourceTree = "<group>"; };
+		8C67C01E18EAB6C800A7BC51 /* HFConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFConstants.m; sourceTree = "<group>"; };
 		8CC5A2FA18E611C100177D11 /* HFConversationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFConversationsViewController.h; sourceTree = "<group>"; };
 		8CC5A2FB18E611C100177D11 /* HFConversationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFConversationsViewController.m; sourceTree = "<group>"; };
 		8CC5A2FD18E61C5A00177D11 /* HFAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFAccount.h; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 				8CC5A2FB18E611C100177D11 /* HFConversationsViewController.m */,
 				8C67C01A18E9D86800A7BC51 /* HFAccountsViewController.h */,
 				8C67C01B18E9D86800A7BC51 /* HFAccountsViewController.m */,
+				8C67C01D18EAB6C800A7BC51 /* HFConstants.h */,
+				8C67C01E18EAB6C800A7BC51 /* HFConstants.m */,
 			);
 			path = Helpful;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C67C01F18EAB6C800A7BC51 /* HFConstants.m in Sources */,
 				8C30DDD918E60C0E00FC80F8 /* HFLoginViewController.m in Sources */,
 				8C67C01918E9D47600A7BC51 /* HFPerson.m in Sources */,
 				8C67C01618E9D40900A7BC51 /* HFMessage.m in Sources */,

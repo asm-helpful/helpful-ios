@@ -16,7 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Configure RestKit.
-    NSURL *baseURL = [NSURL URLWithString:@"https://helpful.io"];
+    NSURL *baseURL = [NSURL URLWithString:HFBaseURLString];
     RKObjectManager *manager = [RKObjectManager managerWithBaseURL:baseURL];
     HFCredentials *credentials = [HFCredentials defaultCredentials];
     [manager.HTTPClient setAuthorizationHeaderWithUsername:credentials.username password:credentials.password];

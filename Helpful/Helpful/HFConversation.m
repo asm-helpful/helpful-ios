@@ -26,14 +26,15 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         mapping = [RKObjectMapping mappingForClass:self];
-        [mapping addAttributeMappingsFromDictionary:@{@"id": @"conversationID",
-                                                      @"subject": @"subject",
-                                                      @"created": @"created",
-                                                      @"updated": @"updated"}];
+        NSDictionary *dict = @{@"id": HFTypedKeyPath(HFConversation, conversationID),
+                               @"subject": HFTypedKeyPath(HFConversation, subject),
+                               @"created": HFTypedKeyPath(HFConversation, created),
+                               @"updated": HFTypedKeyPath(HFConversation, updated)};
+        [mapping addAttributeMappingsFromDictionary:dict];
         
         // Add message relationship mapping.
         RKObjectMapping *messageMapping = [HFMessage objectMapping];
-        RKRelationshipMapping *messagesRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"messages" toKeyPath:@"messages" withMapping:messageMapping];
+        RKRelationshipMapping *messagesRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"messages" toKeyPath:HFTypedKeyPath(HFConversation, messages) withMapping:messageMapping];
         [mapping addPropertyMapping:messagesRelationship];
         
         // TODO: map tags
@@ -42,10 +43,13 @@
 }
 
 + (RKObjectRequestOperation *)fetchConversationsRequestOperationForAccount:(HFAccount *)account {
-    RKObjectMapping *mapping = [self objectMapping];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:nil keyPath:@"conversations" statusCodes:nil];
+    static NSString *collectionKeyPath = @"conversations";
+    static NSString *requestPath = @"/api/conversations";
     NSDictionary *params = @{@"account": account.accountID};
-    NSURLRequest *request = [[RKObjectManager sharedManager] requestWithObject:nil method:RKRequestMethodGET path:@"/api/conversations" parameters:params];
+    
+    RKObjectMapping *mapping = [self objectMapping];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:nil keyPath:collectionKeyPath statusCodes:nil];
+    NSURLRequest *request = [[RKObjectManager sharedManager] requestWithObject:nil method:RKRequestMethodGET path:requestPath parameters:params];
     RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
     return operation;
 }
