@@ -22,7 +22,7 @@
 
 - (void)hf_updateUserInterface;
 - (void)hf_validationDidFinishWithAccounts:(NSSet *)accounts;
-- (void)hf_validationDidFailWithError:(NSError *)error;
+- (void)hf_validationDidFailWithError:(NSError *)error response:(NSHTTPURLResponse *)response;
 
 @end
 
@@ -80,7 +80,8 @@
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         [self hf_validationDidFinishWithAccounts:[mappingResult set]];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        [self hf_validationDidFailWithError:error];
+        NSHTTPURLResponse *response =  operation.HTTPRequestOperation.response;
+        [self hf_validationDidFailWithError:error response:response];
     }];
     [operation start];
 }
@@ -96,12 +97,29 @@
 
 #pragma mark - Private Methods
 
-- (void)hf_validationDidFailWithError:(NSError *)error {
+- (void)hf_validationDidFailWithError:(NSError *)error response:(NSHTTPURLResponse *)response {
     self.validating = NO;
     [self hf_updateUserInterface];
     
+    NSString *title, *message;
+    if ([error.domain isEqualToString:RKErrorDomain]) {
+        if (response.statusCode == 401) {
+            // Invalid credentials.
+            title = NSLocalizedString(@"Invalid Credentials", nil);
+            message = NSLocalizedString(@"The email or password you entered are incorrect. Please try again.", nil);
+        } else {
+            // This is most likely an invalid response.
+            title = NSLocalizedString(@"Server Error", nil);
+            message = [error localizedDescription];
+        }
+    } else {
+        // Assume a network issue.
+        title = NSLocalizedString(@"Connection Error", nil);
+        message = [error localizedDescription];
+    }
+    
     // Present alert view.
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid Credentials", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     [alertView show];
 }
 
