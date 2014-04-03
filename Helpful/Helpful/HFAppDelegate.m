@@ -29,7 +29,9 @@
     
     // Make the navigation controller the root controller of the window, thereby
     // presenting it.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
