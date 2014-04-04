@@ -129,7 +129,7 @@
 }
 
 - (void)hf_presentConversationsForAccount:(HFAccount *)account {
-    HFConversationsViewController *controller = [[HFConversationsViewController alloc] initWithAccount:account];
+    HFConversationsViewController *controller = [[HFConversationsViewController alloc] initWithAccount:account contentType:HFConversationsViewControllerContentTypeInbox];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

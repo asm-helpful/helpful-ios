@@ -10,6 +10,8 @@
 #import "HFMessage.h"
 #import "HFAccount.h"
 
+#import "NSNumber+HFAdditions.h"
+
 @implementation HFConversation
 
 #pragma mark - NSObject
@@ -50,7 +52,7 @@
     static NSString *requestPath = @"/api/conversations";
     NSMutableDictionary *params = [@{@"account": account.accountID} mutableCopy];
     if (archived) {
-        params[@"archived"] = @([archived boolValue]);
+        params[@"archived"] = [archived hf_boolStringValue];
     }
     
     RKObjectMapping *mapping = [self objectMapping];
