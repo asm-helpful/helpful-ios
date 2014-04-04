@@ -28,7 +28,18 @@
         _account = account;
         _contentType = contentType;
         
-        self.title = NSLocalizedString(@"Conversations", nil);
+        NSString *title;
+        switch (contentType) {
+            case HFConversationsViewControllerContentTypeArchive:
+                title = NSLocalizedString(@"Archive", nil);
+                break;
+                
+            case HFConversationsViewControllerContentTypeInbox:
+                title = NSLocalizedString(@"Inbox", nil);
+                break;
+        }
+        NSAssert(title, @"Invalid title");
+        self.title = title;
     }
     return self;
 }
