@@ -20,7 +20,9 @@ static NSUInteger const HFConversationsContainerViewControllerArchiveIndex = 1;
 @property (nonatomic, strong, readwrite) HFConversationsViewController *archiveViewController;
 
 @property (nonatomic, strong) HFConversationsViewController *activeViewController;
+@property (nonatomic, strong) HFConversationsContainerView *containerView;
 
+- (void)hf_loadContainerView;
 - (void)hf_segmentedControlDidChange:(UISegmentedControl *)sender;
 - (HFConversationsViewController *)hf_viewControllerForIndex:(NSUInteger)index;
 - (void)hf_presentViewControllerAtIndex:(NSUInteger)index;
@@ -33,45 +35,48 @@ static NSUInteger const HFConversationsContainerViewControllerArchiveIndex = 1;
     if ((self = [super init])) {
         _account = account;
         
+        // Load view controllers.
         _inboxViewController = [[HFConversationsViewController alloc] initWithAccount:account contentType:HFConversationsViewControllerContentTypeInbox];
         _archiveViewController = [[HFConversationsViewController alloc] initWithAccount:account contentType:HFConversationsViewControllerContentTypeArchive];
         
-        // We don't want extended layout for the top.
-        self.edgesForExtendedLayout = self.edgesForExtendedLayout & ~UIRectEdgeTop;
+        self.title = NSLocalizedString(@"Conversations", nil);
     }
     return self;
 }
-\
-#pragma mark - UIViewController
 
-- (void)loadView {
-    [super loadView];
-    
-    HFConversationsContainerView *containerView = [[HFConversationsContainerView alloc] initWithFrame:CGRectZero];
-    
-    // Configure segmented control.
-    NSUInteger index = HFConversationsContainerViewControllerInboxIndex;
-    [containerView.segmentedControl insertSegmentWithTitle:[self hf_viewControllerForIndex:index].title atIndex:index animated:NO];
-    index = HFConversationsContainerViewControllerArchiveIndex;
-    [containerView.segmentedControl insertSegmentWithTitle:[self hf_viewControllerForIndex:index].title atIndex:index animated:NO];
-    containerView.segmentedControl.selectedSegmentIndex = HFConversationsContainerViewControllerInboxIndex;
-    [containerView.segmentedControl addTarget:self action:@selector(hf_segmentedControlDidChange:) forControlEvents:UIControlEventValueChanged];
-    
-    self.view = containerView;
-}
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self hf_loadContainerView];
     [self hf_presentViewControllerAtIndex:self.containerView.segmentedControl.selectedSegmentIndex];
 }
 
-- (HFConversationsContainerView *)containerView {
-    HFConversationsContainerView *view = (HFConversationsContainerView *)[super view];
-    NSAssert([view isKindOfClass:[HFConversationsContainerView class]], @"Invalid view class");
-    return view;
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    CGFloat topOffset = self.topLayoutGuide.length;
+    CGSize viewSize = self.view.bounds.size;
+    self.containerView.frame = CGRectMake(0.0f, topOffset, viewSize.width, viewSize.height - topOffset);
 }
 
 #pragma mark - Private Methods
+
+- (void)hf_loadContainerView {
+    HFConversationsContainerView *containerView = [[HFConversationsContainerView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:containerView];
+    self.containerView = containerView;
+    
+    // Configure segmented control.
+    UISegmentedControl *segmentedControl = self.containerView.segmentedControl;
+    NSUInteger index = HFConversationsContainerViewControllerInboxIndex;
+    [segmentedControl insertSegmentWithTitle:[self hf_viewControllerForIndex:index].title atIndex:index animated:NO];
+    index = HFConversationsContainerViewControllerArchiveIndex;
+    [segmentedControl insertSegmentWithTitle:[self hf_viewControllerForIndex:index].title atIndex:index animated:NO];
+    segmentedControl.selectedSegmentIndex = HFConversationsContainerViewControllerInboxIndex;
+    [segmentedControl addTarget:self action:@selector(hf_segmentedControlDidChange:) forControlEvents:UIControlEventValueChanged];
+}
 
 - (void)hf_segmentedControlDidChange:(UISegmentedControl *)sender {
     NSUInteger index = sender.selectedSegmentIndex;
