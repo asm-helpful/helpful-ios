@@ -16,10 +16,10 @@ static NSUInteger const HFConversationsContainerViewControllerArchiveIndex = 1;
 
 @interface HFConversationsContainerViewController ()
 
-@property (nonatomic, strong, readwrite) HFConversationsViewController *inboxViewController;
-@property (nonatomic, strong, readwrite) HFConversationsViewController *archiveViewController;
-
+@property (nonatomic, strong) HFConversationsViewController *inboxViewController;
+@property (nonatomic, strong) HFConversationsViewController *archiveViewController;
 @property (nonatomic, strong) HFConversationsViewController *activeViewController;
+
 @property (nonatomic, strong) HFConversationsContainerView *containerView;
 
 - (void)hf_loadContainerView;
@@ -32,6 +32,8 @@ static NSUInteger const HFConversationsContainerViewControllerArchiveIndex = 1;
 @implementation HFConversationsContainerViewController
 
 - (id)initWithAccount:(HFAccount *)account {
+    NSParameterAssert(account);
+    
     if ((self = [super init])) {
         _account = account;
         

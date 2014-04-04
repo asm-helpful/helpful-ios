@@ -10,13 +10,14 @@
 
 @class HFConversationsViewController, HFAccount;
 
+/// `HFConversationsContainerViewController` displays either the inbox or the archive and provides
+/// UI elements to switch between the two.
 @interface HFConversationsContainerViewController : UIViewController
 
-- (instancetype)initWithAccount:(HFAccount *)account;
+/// Initializes a new `HFConversationsViewController` with the given `HFAccount`.
+- (instancetype)initWithAccount:(HFAccount *)account NS_DESIGNATED_INITIALIZER;
 
+/// The account.
 @property (nonatomic, strong, readonly) HFAccount *account;
-
-@property (nonatomic, strong, readonly) HFConversationsViewController *inboxViewController;
-@property (nonatomic, strong, readonly) HFConversationsViewController *archiveViewController;
 
 @end

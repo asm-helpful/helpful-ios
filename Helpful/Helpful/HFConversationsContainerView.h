@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+/// `HFConversationsContainerView` is used to display a `UISegmentedControl` next to a content view.
 @interface HFConversationsContainerView : UIView
 
+/// The `UISegmentedControl`.
 @property (nonatomic, strong, readonly) UISegmentedControl *segmentedControl;
+
+/// The content view.
 @property (nonatomic, strong) UIView *contentView;
 
 @end
