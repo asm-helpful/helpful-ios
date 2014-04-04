@@ -83,7 +83,7 @@
 
 - (void)hf_fetchConversations {
     // Fetch all accounts.
-    RKObjectRequestOperation *operation = [HFConversation fetchConversationsRequestOperationForAccount:self.account];
+    RKObjectRequestOperation *operation = [HFConversation fetchConversationsRequestOperationForAccount:self.account archived:nil];
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         self.conversations = [mappingResult array];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {

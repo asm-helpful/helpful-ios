@@ -43,16 +43,33 @@
     return mapping;
 }
 
-+ (RKObjectRequestOperation *)fetchConversationsRequestOperationForAccount:(HFAccount *)account {
++ (RKObjectRequestOperation *)fetchConversationsRequestOperationForAccount:(HFAccount *)account archived:(NSNumber *)archived {
+    NSParameterAssert(account);
+    
     static NSString *collectionKeyPath = @"conversations";
     static NSString *requestPath = @"/api/conversations";
-    NSDictionary *params = @{@"account": account.accountID};
+    NSMutableDictionary *params = [@{@"account": account.accountID} mutableCopy];
+    if (archived) {
+        params[@"archived"] = @([archived boolValue]);
+    }
     
     RKObjectMapping *mapping = [self objectMapping];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:nil keyPath:collectionKeyPath statusCodes:nil];
     NSURLRequest *request = [[RKObjectManager sharedManager] requestWithObject:nil method:RKRequestMethodGET path:requestPath parameters:params];
     RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
     return operation;
+}
+
++ (RKObjectRequestOperation *)fetchAllConversationsRequestOperationForAccount:(HFAccount *)account {
+    return [self fetchConversationsRequestOperationForAccount:account archived:nil];
+}
+
++ (RKObjectRequestOperation *)fetchArchivedConversationsRequestOperationForAccount:(HFAccount *)account {
+    return [self fetchConversationsRequestOperationForAccount:account archived:@(YES)];
+}
+
++ (RKObjectRequestOperation *)fetchInboxConversationsRequestOperationForAccount:(HFAccount *)account {
+    return [self fetchConversationsRequestOperationForAccount:account archived:@(NO)];
 }
 
 @end

@@ -44,7 +44,22 @@
 /// Returns the RestKit mapping.
 + (RKObjectMapping *)objectMapping;
 
-/// Returns an operation that can be used to fetch all conversations for a given account.
-+ (RKObjectRequestOperation *)fetchConversationsRequestOperationForAccount:(HFAccount *)account;
+/* Returns an operation that can be used to fetch all conversations for a given account.
+ *
+ * @param account The account that the conversations should be related to. Required.
+ * @param archived Indicates if archived conversations (archived = `YES`), conversations that are
+ * in your inbox (archived = `NO`), or all conversations (archived = `nil`) should be fetched. Optional.
+ * @return The request operation
+ */
++ (RKObjectRequestOperation *)fetchConversationsRequestOperationForAccount:(HFAccount *)account archived:(NSNumber *)archived;
+
+/// Fetches all conversations, both archived and inbox ones.
++ (RKObjectRequestOperation *)fetchAllConversationsRequestOperationForAccount:(HFAccount *)account;
+
+/// Fetches archived conversations.
++ (RKObjectRequestOperation *)fetchArchivedConversationsRequestOperationForAccount:(HFAccount *)account;
+
+/// Fetches inbox conversations.
++ (RKObjectRequestOperation *)fetchInboxConversationsRequestOperationForAccount:(HFAccount *)account;
 
 @end
