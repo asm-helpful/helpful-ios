@@ -23,11 +23,23 @@
 
 @implementation HFConversationsViewController
 
-- (id)initWithAccount:(HFAccount *)account {
+- (id)initWithAccount:(HFAccount *)account contentType:(HFConversationsViewControllerContentType)contentType {
     if ((self = [super initWithStyle:UITableViewStylePlain])) {
         _account = account;
+        _contentType = contentType;
         
-        self.title = NSLocalizedString(@"Conversations", nil);
+        NSString *title;
+        switch (contentType) {
+            case HFConversationsViewControllerContentTypeArchive:
+                title = NSLocalizedString(@"Archive", nil);
+                break;
+                
+            case HFConversationsViewControllerContentTypeInbox:
+                title = NSLocalizedString(@"Inbox", nil);
+                break;
+        }
+        NSAssert(title, @"Invalid title");
+        self.title = title;
     }
     return self;
 }
@@ -83,7 +95,17 @@
 
 - (void)hf_fetchConversations {
     // Fetch all accounts.
-    RKObjectRequestOperation *operation = [HFConversation fetchConversationsRequestOperationForAccount:self.account];
+    RKObjectRequestOperation *operation;
+    switch (self.contentType) {
+        case HFConversationsViewControllerContentTypeArchive:
+            operation = [HFConversation fetchArchivedConversationsRequestOperationForAccount:self.account];
+            break;
+            
+        case HFConversationsViewControllerContentTypeInbox:
+            operation = [HFConversation fetchInboxConversationsRequestOperationForAccount:self.account];
+            break;
+    }
+    NSAssert(operation, @"Undefined request operation");
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         self.conversations = [mappingResult array];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {

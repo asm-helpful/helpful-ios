@@ -9,7 +9,7 @@
 #import <RestKit/RestKit.h>
 
 #import "HFAccountsViewController.h"
-#import "HFConversationsViewController.h"
+#import "HFConversationsContainerViewController.h"
 #import "HFLoginViewController.h"
 
 #import "HFCredentials.h"
@@ -129,7 +129,7 @@
 }
 
 - (void)hf_presentConversationsForAccount:(HFAccount *)account {
-    HFConversationsViewController *controller = [[HFConversationsViewController alloc] initWithAccount:account];
+    HFConversationsContainerViewController *controller = [[HFConversationsContainerViewController alloc] initWithAccount:account];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
