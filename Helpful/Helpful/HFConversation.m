@@ -49,10 +49,10 @@
     NSParameterAssert(account);
     
     static NSString *collectionKeyPath = @"conversations";
-    static NSString *requestPath = @"/api/conversations";
-    NSMutableDictionary *params = [@{@"account": account.accountID} mutableCopy];
+    NSString *requestPath = [NSString stringWithFormat:@"/api/accounts/%@/conversations", account.accountID ];
+    NSDictionary *params = nil;
     if (archived) {
-        params[@"archived"] = [archived hf_boolStringValue];
+        params = @{@"archived": [archived hf_boolStringValue]};
     }
     
     RKObjectMapping *mapping = [self objectMapping];
