@@ -7,6 +7,7 @@
 //
 
 #import "HFMessage.h"
+#import "HFConversation.h"
 
 @implementation HFMessage
 
@@ -33,6 +34,19 @@
         [mapping addAttributeMappingsFromDictionary:dict];
     });
     return mapping;
+}
+
++ (RKObjectRequestOperation *)fetchMessageRequestOperationForConversation:(HFConversation *)conversation {
+    NSParameterAssert(conversation);
+
+    static NSString *collectionKeyPath = @"messages";
+    NSString *requestPath = [NSString stringWithFormat:@"/api/conversations/%@/messages", conversation.conversationID];
+
+    RKObjectMapping *mapping = [self objectMapping];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping method:RKRequestMethodGET pathPattern:nil keyPath:collectionKeyPath statusCodes:nil];
+    NSURLRequest *request = [[RKObjectManager sharedManager] requestWithObject:nil method:RKRequestMethodGET path:requestPath parameters:nil];
+    RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
+    return operation;
 }
 
 @end

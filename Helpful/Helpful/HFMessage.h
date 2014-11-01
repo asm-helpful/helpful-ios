@@ -40,4 +40,6 @@
 /// Returns the RestKit mapping.
 + (RKObjectMapping *)objectMapping;
 
++ (RKObjectRequestOperation *)fetchMessageRequestOperationForConversation:(HFConversation *)conversation;
+
 @end
