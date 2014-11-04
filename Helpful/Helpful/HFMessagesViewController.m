@@ -42,7 +42,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Reply", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -99,7 +99,7 @@
 - (void)hf_configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     HFMessage *message = self.messages[indexPath.row];
     cell.textLabel.text = message.body;
-    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.numberOfLines = 2;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ( %@ )", message.person.name, message.person.email];
 }
 
