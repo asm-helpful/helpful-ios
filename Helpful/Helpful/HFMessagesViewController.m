@@ -22,10 +22,6 @@
 - (id)initWithConversation:(HFConversation *)conversation {
     if ((self = [super initWithStyle:UITableViewStylePlain])) {
         _conversation = conversation;
-
-        NSString * title = conversation.subject;
-        NSAssert(title, @"Invalid title");
-        self.title = title;
     }
     return self;
 }

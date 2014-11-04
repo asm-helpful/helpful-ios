@@ -41,7 +41,7 @@ static NSUInteger const HFConversationsContainerViewControllerArchiveIndex = 1;
         _inboxViewController = [[HFConversationsViewController alloc] initWithAccount:account contentType:HFConversationsViewControllerContentTypeInbox];
         _archiveViewController = [[HFConversationsViewController alloc] initWithAccount:account contentType:HFConversationsViewControllerContentTypeArchive];
         
-        self.title = NSLocalizedString(@"Conversations", nil);
+        self.title = NSLocalizedString(@"Inbox", nil);
     }
     return self;
 }
