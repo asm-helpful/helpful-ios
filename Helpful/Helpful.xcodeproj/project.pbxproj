@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A88D8D21A04C71600B785B0 /* HFMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */; };
+		4ADA2A1E1A0951D1000C03DA /* HFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA2A1D1A0951D1000C03DA /* HFPerson.m */; };
 		4C8A5F42ADA44963A8B5A023 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210EA750C6A2416A94B2E18E /* libPods.a */; };
 		756BF6A7184B389000423025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756BF6A6184B389000423025 /* Foundation.framework */; };
 		756BF6A9184B389000423025 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756BF6A8184B389000423025 /* CoreGraphics.framework */; };
@@ -49,6 +50,8 @@
 		210EA750C6A2416A94B2E18E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A88D8D01A04C71600B785B0 /* HFMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFMessagesViewController.h; sourceTree = "<group>"; };
 		4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFMessagesViewController.m; sourceTree = "<group>"; };
+		4ADA2A1C1A0951D1000C03DA /* HFPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFPerson.h; sourceTree = "<group>"; };
+		4ADA2A1D1A0951D1000C03DA /* HFPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFPerson.m; sourceTree = "<group>"; };
 		756BF6A3184B389000423025 /* Helpful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Helpful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		756BF6A6184B389000423025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		756BF6A8184B389000423025 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -215,6 +218,8 @@
 				8C67C01218E9D37600A7BC51 /* HFConversation.m */,
 				8C67C01418E9D40900A7BC51 /* HFMessage.h */,
 				8C67C01518E9D40900A7BC51 /* HFMessage.m */,
+				4ADA2A1C1A0951D1000C03DA /* HFPerson.h */,
+				4ADA2A1D1A0951D1000C03DA /* HFPerson.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -392,6 +397,7 @@
 				8C30DDD918E60C0E00FC80F8 /* HFLoginViewController.m in Sources */,
 				4A88D8D21A04C71600B785B0 /* HFMessagesViewController.m in Sources */,
 				8C67C01618E9D40900A7BC51 /* HFMessage.m in Sources */,
+				4ADA2A1E1A0951D1000C03DA /* HFPerson.m in Sources */,
 				756BF6B7184B389100423025 /* HFAppDelegate.m in Sources */,
 				8C67C01C18E9D86800A7BC51 /* HFAccountsViewController.m in Sources */,
 				8C4C311F18EF3A2000A2F490 /* HFConversationsContainerView.m in Sources */,

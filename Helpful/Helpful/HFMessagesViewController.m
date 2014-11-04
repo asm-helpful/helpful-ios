@@ -9,6 +9,7 @@
 #import "HFMessagesViewController.h"
 #import "HFConversation.h"
 #import "HFMessage.h"
+#import "HFPerson.h"
 
 @interface HFMessagesViewController ()
 
@@ -99,7 +100,8 @@
 - (void)hf_configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     HFMessage *message = self.messages[indexPath.row];
     cell.textLabel.text = message.body;
-    cell.detailTextLabel.text = message.personID;
+    cell.textLabel.numberOfLines = 0;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ( %@ )", message.person.name, message.person.email];
 }
 
 @end

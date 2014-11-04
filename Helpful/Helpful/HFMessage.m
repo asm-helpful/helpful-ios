@@ -7,6 +7,7 @@
 //
 
 #import "HFMessage.h"
+#import "HFPerson.h"
 #import "HFConversation.h"
 
 @implementation HFMessage
@@ -15,7 +16,7 @@
 
 - (NSString *)description {
     static NSString *format = @"<%@: %p messageID:%@ body:%@ created:%@ updated:%@ conversationID:%@ personID:%@>";
-    return [NSString stringWithFormat:format, NSStringFromClass(self.class), self, self.messageID, self.body, self.created, self.updated, self.conversationID, self.personID];
+    return [NSString stringWithFormat:format, NSStringFromClass(self.class), self, self.messageID, self.body, self.created, self.updated, self.conversationID, self.person.personID];
 }
 
 #pragma mark - RestKit Additions
@@ -29,9 +30,11 @@
                                @"body": HFTypedKeyPath(HFMessage, body),
                                @"created": HFTypedKeyPath(HFMessage, created),
                                @"updated": HFTypedKeyPath(HFMessage, updated),
-                               @"conversation_id": HFTypedKeyPath(HFMessage, conversationID),
-                               @"person_id": HFTypedKeyPath(HFMessage, personID)};
+                               @"conversation_id": HFTypedKeyPath(HFMessage, conversationID)};
         [mapping addAttributeMappingsFromDictionary:dict];
+        [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"person"
+                                                                                       toKeyPath:@"person"
+                                                                                     withMapping:[HFPerson objectMapping]]];
     });
     return mapping;
 }

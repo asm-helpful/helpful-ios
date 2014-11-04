@@ -20,8 +20,8 @@
 /// The unique ID of the conversation this message is part of.
 @property (nonatomic, copy) NSString *conversationID;
 
-/// The unique ID of the person that created that message.
-@property (nonatomic, copy) NSString *personID;
+/// The person that created that message.
+@property (nonatomic, strong) HFPerson *person;
 
 /// The body of the message.
 @property (nonatomic, copy) NSString *body;
