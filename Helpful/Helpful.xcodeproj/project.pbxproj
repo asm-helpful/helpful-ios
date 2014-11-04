@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A11C7121A096E22003187B8 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A11C7111A096E22003187B8 /* Launch Screen.xib */; };
 		4A88D8D21A04C71600B785B0 /* HFMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */; };
 		4ADA2A1E1A0951D1000C03DA /* HFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA2A1D1A0951D1000C03DA /* HFPerson.m */; };
 		4C8A5F42ADA44963A8B5A023 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210EA750C6A2416A94B2E18E /* libPods.a */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		210EA750C6A2416A94B2E18E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A11C7111A096E22003187B8 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "../Launch Screen.xib"; sourceTree = "<group>"; };
 		4A88D8D01A04C71600B785B0 /* HFMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFMessagesViewController.h; sourceTree = "<group>"; };
 		4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFMessagesViewController.m; sourceTree = "<group>"; };
 		4ADA2A1C1A0951D1000C03DA /* HFPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFPerson.h; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				756BF6B5184B389100423025 /* HFAppDelegate.h */,
 				756BF6B6184B389100423025 /* HFAppDelegate.m */,
 				756BF6BE184B389100423025 /* Images.xcassets */,
+				4A11C7111A096E22003187B8 /* Launch Screen.xib */,
 				756BF6AD184B389100423025 /* Supporting Files */,
 			);
 			path = Helpful;
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C30DDDA18E60C0E00FC80F8 /* HFLoginViewController.xib in Resources */,
+				4A11C7121A096E22003187B8 /* Launch Screen.xib in Resources */,
 				756BF6BF184B389100423025 /* Images.xcassets in Resources */,
 				756BF6B1184B389100423025 /* InfoPlist.strings in Resources */,
 			);
