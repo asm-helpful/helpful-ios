@@ -40,8 +40,11 @@
 
 #pragma mark - UIViewController
 
-#pragma mark - UIViewController
+- (void) viewDidLoad {
+    [super viewDidLoad];
 
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Reply", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
+}
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
