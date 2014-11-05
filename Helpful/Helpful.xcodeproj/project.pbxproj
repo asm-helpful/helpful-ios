@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4A11C7121A096E22003187B8 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A11C7111A096E22003187B8 /* Launch Screen.xib */; };
+		4A11C7181A097596003187B8 /* HFMessageCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A11C7161A097596003187B8 /* HFMessageCellTableViewCell.m */; };
+		4A11C7191A097596003187B8 /* HFMessageCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A11C7171A097596003187B8 /* HFMessageCellTableViewCell.xib */; };
+		4A1F58031A09E100002703D2 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1F58021A09E100002703D2 /* ImageExtensions.swift */; };
 		4A88D8D21A04C71600B785B0 /* HFMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */; };
 		4ADA2A1E1A0951D1000C03DA /* HFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA2A1D1A0951D1000C03DA /* HFPerson.m */; };
 		4C8A5F42ADA44963A8B5A023 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210EA750C6A2416A94B2E18E /* libPods.a */; };
@@ -50,6 +53,11 @@
 /* Begin PBXFileReference section */
 		210EA750C6A2416A94B2E18E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A11C7111A096E22003187B8 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "../Launch Screen.xib"; sourceTree = "<group>"; };
+		4A11C7151A097596003187B8 /* HFMessageCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFMessageCellTableViewCell.h; sourceTree = "<group>"; };
+		4A11C7161A097596003187B8 /* HFMessageCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFMessageCellTableViewCell.m; sourceTree = "<group>"; };
+		4A11C7171A097596003187B8 /* HFMessageCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HFMessageCellTableViewCell.xib; sourceTree = "<group>"; };
+		4A1F58011A09E0FF002703D2 /* Helpful-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Helpful-Bridging-Header.h"; sourceTree = "<group>"; };
+		4A1F58021A09E100002703D2 /* ImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		4A88D8D01A04C71600B785B0 /* HFMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFMessagesViewController.h; sourceTree = "<group>"; };
 		4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFMessagesViewController.m; sourceTree = "<group>"; };
 		4ADA2A1C1A0951D1000C03DA /* HFPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFPerson.h; sourceTree = "<group>"; };
@@ -125,11 +133,13 @@
 		756BF69A184B389000423025 = {
 			isa = PBXGroup;
 			children = (
+				4A1F58021A09E100002703D2 /* ImageExtensions.swift */,
 				756BF6AC184B389100423025 /* Helpful */,
 				756BF6CB184B389100423025 /* HelpfulTests */,
 				756BF6A5184B389000423025 /* Frameworks */,
 				756BF6A4184B389000423025 /* Products */,
 				8401515BC1B291CF36439B61 /* Pods */,
+				4A1F58011A09E0FF002703D2 /* Helpful-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -259,6 +269,9 @@
 				8C67C01B18E9D86800A7BC51 /* HFAccountsViewController.m */,
 				4A88D8D01A04C71600B785B0 /* HFMessagesViewController.h */,
 				4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */,
+				4A11C7151A097596003187B8 /* HFMessageCellTableViewCell.h */,
+				4A11C7161A097596003187B8 /* HFMessageCellTableViewCell.m */,
+				4A11C7171A097596003187B8 /* HFMessageCellTableViewCell.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -345,6 +358,7 @@
 				8C30DDDA18E60C0E00FC80F8 /* HFLoginViewController.xib in Resources */,
 				4A11C7121A096E22003187B8 /* Launch Screen.xib in Resources */,
 				756BF6BF184B389100423025 /* Images.xcassets in Resources */,
+				4A11C7191A097596003187B8 /* HFMessageCellTableViewCell.xib in Resources */,
 				756BF6B1184B389100423025 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,8 +422,10 @@
 				8C4C311618EF352B00A2F490 /* NSNumber+HFAdditions.m in Sources */,
 				8C30DDDE18E60C7200FC80F8 /* HFCredentials.m in Sources */,
 				8CC5A2FF18E61C5A00177D11 /* HFAccount.m in Sources */,
+				4A1F58031A09E100002703D2 /* ImageExtensions.swift in Sources */,
 				756BF6B3184B389100423025 /* main.m in Sources */,
 				8C4C311C18EF362200A2F490 /* HFConversationsContainerViewController.m in Sources */,
+				4A11C7181A097596003187B8 /* HFMessageCellTableViewCell.m in Sources */,
 				8C67C01318E9D37600A7BC51 /* HFConversation.m in Sources */,
 				8CC5A2FC18E611C100177D11 /* HFConversationsViewController.m in Sources */,
 			);
@@ -529,10 +545,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Helpful/Helpful-Prefix.pch";
 				INFOPLIST_FILE = "Helpful/Helpful-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Helpful-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -543,10 +563,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Helpful/Helpful-Prefix.pch";
 				INFOPLIST_FILE = "Helpful/Helpful-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Helpful-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -21,6 +21,7 @@
                                @"created": HFTypedKeyPath(HFPerson, created),
                                @"updated": HFTypedKeyPath(HFPerson, updated),
                                @"initials": HFTypedKeyPath(HFPerson, initials),
+                               @"gravatar_url": HFTypedKeyPath(HFPerson, gravatarUrl),
                                @"email": HFTypedKeyPath(HFPerson, email)};
         [mapping addAttributeMappingsFromDictionary:dict];
     });

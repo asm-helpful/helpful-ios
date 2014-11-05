@@ -7,9 +7,12 @@
 //
 
 #import "HFMessagesViewController.h"
+#import "HFMessageCellTableViewCell.h"
 #import "HFConversation.h"
 #import "HFMessage.h"
 #import "HFPerson.h"
+
+#import "Helpful-Swift.h"
 
 @interface HFMessagesViewController ()
 
@@ -43,6 +46,8 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"HFMessageCellTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Reply", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -65,14 +70,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
     [self hf_configureCell:cell atIndexPath:indexPath];
 
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
 }
 
 #pragma mark - UITableViewDelegate
@@ -97,10 +103,21 @@
 }
 
 - (void)hf_configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    HFMessageCellTableViewCell * messageCell = (HFMessageCellTableViewCell *)cell;
     HFMessage *message = self.messages[indexPath.row];
-    cell.textLabel.text = message.body;
-    cell.textLabel.numberOfLines = 2;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ( %@ )", message.person.name, message.person.email];
+    messageCell.messageLabel.text = message.body;
+    messageCell.messageLabel.numberOfLines = 2;
+    messageCell.titleLabel.text = self.conversation.subject;
+    messageCell.nameMailLabel.text = [NSString stringWithFormat:@"%@, %@", message.person.name, message.person.email];
+    NSURL *imageUrl = [NSURL URLWithString:message.person.gravatarUrl];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:imageUrl] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error loading URL %@", imageUrl);
+            return;
+        }
+        messageCell.portratImage.image = [[UIImage imageWithData:data] roundImageFor:messageCell.portratImage.bounds];
+    }];
+//    cell.imageView
 }
 
 @end
