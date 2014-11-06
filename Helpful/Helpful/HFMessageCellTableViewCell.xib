@@ -16,6 +16,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeK-uH-gm8">
+                        <rect key="frame" x="36" y="-2" width="4" height="83.5"/>
+                        <color key="backgroundColor" red="0.8784313725490196" green="0.89803921568627454" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="4" id="jgS-QB-chd"/>
+                        </constraints>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait" translatesAutoresizingMaskIntoConstraints="NO" id="wAL-iD-M8n">
                         <rect key="frame" x="8" y="18" width="60" height="59.5"/>
                         <constraints>
@@ -24,7 +31,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 hrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9X-Mo-84f">
-                        <rect key="frame" x="268.5" y="18" width="40" height="20.5"/>
+                        <rect key="frame" x="269" y="18" width="40" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="ERo-gm-oPa"/>
                         </constraints>
@@ -33,7 +40,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="90" placeholderIntrinsicHeight="21" text="name / mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="7rM-RQ-lgp">
-                        <rect key="frame" x="76" y="18" width="184" height="21"/>
+                        <rect key="frame" x="76" y="18" width="185" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="tYj-N5-hnZ"/>
                         </constraints>
@@ -42,13 +49,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="1NE-7f-JYC">
-                        <rect key="frame" x="76" y="40" width="184" height="20.5"/>
+                        <rect key="frame" x="76" y="40" width="185" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="XaN-ba-gGn">
-                        <rect key="frame" x="76" y="57" width="184" height="20.5"/>
+                        <rect key="frame" x="76" y="57" width="185" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.33333333333333331" green="0.34509803921568627" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -56,10 +63,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="wAL-iD-M8n" firstAttribute="top" secondItem="Y9X-Mo-84f" secondAttribute="top" id="5ad-Eb-iJd"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="yeK-uH-gm8" secondAttribute="bottom" constant="-10" id="6Qa-i2-nbY"/>
                     <constraint firstAttribute="bottomMargin" secondItem="XaN-ba-gGn" secondAttribute="bottom" constant="-6" id="8Fu-nH-yjT"/>
+                    <constraint firstItem="yeK-uH-gm8" firstAttribute="centerX" secondItem="wAL-iD-M8n" secondAttribute="centerX" id="8li-1E-oBm"/>
                     <constraint firstItem="7rM-RQ-lgp" firstAttribute="width" secondItem="XaN-ba-gGn" secondAttribute="width" id="ERD-Lh-6kM"/>
                     <constraint firstAttribute="centerY" secondItem="wAL-iD-M8n" secondAttribute="centerY" id="ERR-EP-f3K"/>
                     <constraint firstItem="1NE-7f-JYC" firstAttribute="top" secondItem="7rM-RQ-lgp" secondAttribute="bottom" constant="1" id="KYF-7m-Ybn"/>
+                    <constraint firstItem="yeK-uH-gm8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-10" id="M9o-y6-uRV"/>
                     <constraint firstItem="7rM-RQ-lgp" firstAttribute="centerX" secondItem="XaN-ba-gGn" secondAttribute="centerX" id="OTn-oA-XkS"/>
                     <constraint firstItem="wAL-iD-M8n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="Q4M-De-0N3"/>
                     <constraint firstItem="7rM-RQ-lgp" firstAttribute="top" secondItem="wAL-iD-M8n" secondAttribute="top" id="bB4-ek-p34"/>
@@ -79,6 +89,7 @@
             </tableViewCellContentView>
             <inset key="separatorInset" minX="76" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="decorationBarConstraint" destination="M9o-y6-uRV" id="C7y-Bm-5Hg"/>
                 <outlet property="messageLabel" destination="XaN-ba-gGn" id="6Wq-nH-J8v"/>
                 <outlet property="nameMailLabel" destination="7rM-RQ-lgp" id="s2d-TG-7Cv"/>
                 <outlet property="portratImage" destination="wAL-iD-M8n" id="2ef-uG-Shh"/>

@@ -15,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *portratImage;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *decorationBarConstraint;
 @end

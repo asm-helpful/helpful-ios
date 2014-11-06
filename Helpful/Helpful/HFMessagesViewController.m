@@ -65,7 +65,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.messages.count;
+    return self.messages.count * 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -104,7 +104,12 @@
 
 - (void)hf_configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     HFMessageCellTableViewCell * messageCell = (HFMessageCellTableViewCell *)cell;
-    HFMessage *message = self.messages[indexPath.row];
+    if (indexPath.row == 0) {
+        messageCell.decorationBarConstraint.constant = 50.f;
+    } else {
+        messageCell.decorationBarConstraint.constant = -10.f;
+    }
+    HFMessage *message = self.messages[0];
     messageCell.messageLabel.text = message.body;
     messageCell.messageLabel.numberOfLines = 2;
     messageCell.titleLabel.text = self.conversation.subject;
