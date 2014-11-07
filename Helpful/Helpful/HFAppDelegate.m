@@ -15,6 +15,11 @@
 @implementation HFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //Restkit uses AFNetworking, which allows easy activity indication...
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+
     // Configure RestKit.
     NSURL *baseURL = [NSURL URLWithString:HFBaseURLString];
     RKObjectManager *manager = [RKObjectManager managerWithBaseURL:baseURL];

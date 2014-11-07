@@ -12,6 +12,8 @@
 #import "HFConversation.h"
 #import "HFMessage.h"
 
+#import "HFMessagesViewController.h"
+
 @interface HFConversationsViewController ()
 
 @property (nonatomic, copy, readwrite) NSArray *conversations;
@@ -88,7 +90,8 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    HFConversation *conversation = self.conversations[indexPath.row];
+    [self hf_presentMessagesForConversation:conversation];
 }
 
 #pragma mark - Private Methods
@@ -120,6 +123,11 @@
     HFMessage *latestMessage = [conversation.messages lastObject];
     cell.textLabel.text = conversation.subject;
     cell.detailTextLabel.text = latestMessage.body;
+}
+
+- (void)hf_presentMessagesForConversation:(HFConversation *)conversation {
+    HFMessagesViewController *controller = [[HFMessagesViewController alloc] initWithConversation:conversation];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end
