@@ -13,6 +13,9 @@
 		4A1F58031A09E100002703D2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1F58021A09E100002703D2 /* Extensions.swift */; };
 		4A88D8D21A04C71600B785B0 /* HFMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */; };
 		4ADA2A1E1A0951D1000C03DA /* HFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA2A1D1A0951D1000C03DA /* HFPerson.m */; };
+		4ADE28041A0D67C7008F2363 /* OpenSansBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADE28011A0D67C7008F2363 /* OpenSansBold.ttf */; };
+		4ADE28051A0D67C7008F2363 /* OpenSansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADE28021A0D67C7008F2363 /* OpenSansLight.ttf */; };
+		4ADE28061A0D67C7008F2363 /* OpenSansRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADE28031A0D67C7008F2363 /* OpenSansRegular.ttf */; };
 		4C8A5F42ADA44963A8B5A023 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210EA750C6A2416A94B2E18E /* libPods.a */; };
 		756BF6A7184B389000423025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756BF6A6184B389000423025 /* Foundation.framework */; };
 		756BF6A9184B389000423025 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756BF6A8184B389000423025 /* CoreGraphics.framework */; };
@@ -62,6 +65,9 @@
 		4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFMessagesViewController.m; sourceTree = "<group>"; };
 		4ADA2A1C1A0951D1000C03DA /* HFPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFPerson.h; sourceTree = "<group>"; };
 		4ADA2A1D1A0951D1000C03DA /* HFPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFPerson.m; sourceTree = "<group>"; };
+		4ADE28011A0D67C7008F2363 /* OpenSansBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansBold.ttf; sourceTree = "<group>"; };
+		4ADE28021A0D67C7008F2363 /* OpenSansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansLight.ttf; sourceTree = "<group>"; };
+		4ADE28031A0D67C7008F2363 /* OpenSansRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansRegular.ttf; sourceTree = "<group>"; };
 		756BF6A3184B389000423025 /* Helpful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Helpful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		756BF6A6184B389000423025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		756BF6A8184B389000423025 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -134,6 +140,9 @@
 			isa = PBXGroup;
 			children = (
 				4A1F58021A09E100002703D2 /* Extensions.swift */,
+				4ADE28011A0D67C7008F2363 /* OpenSansBold.ttf */,
+				4ADE28021A0D67C7008F2363 /* OpenSansLight.ttf */,
+				4ADE28031A0D67C7008F2363 /* OpenSansRegular.ttf */,
 				756BF6AC184B389100423025 /* Helpful */,
 				756BF6CB184B389100423025 /* HelpfulTests */,
 				756BF6A5184B389000423025 /* Frameworks */,
@@ -355,10 +364,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ADE28061A0D67C7008F2363 /* OpenSansRegular.ttf in Resources */,
+				4ADE28051A0D67C7008F2363 /* OpenSansLight.ttf in Resources */,
 				8C30DDDA18E60C0E00FC80F8 /* HFLoginViewController.xib in Resources */,
 				4A11C7121A096E22003187B8 /* Launch Screen.xib in Resources */,
 				756BF6BF184B389100423025 /* Images.xcassets in Resources */,
 				4A11C7191A097596003187B8 /* HFMessageCellTableViewCell.xib in Resources */,
+				4ADE28041A0D67C7008F2363 /* OpenSansBold.ttf in Resources */,
 				756BF6B1184B389100423025 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
