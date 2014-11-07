@@ -10,7 +10,7 @@
 		4A11C7121A096E22003187B8 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A11C7111A096E22003187B8 /* Launch Screen.xib */; };
 		4A11C7181A097596003187B8 /* HFMessageCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A11C7161A097596003187B8 /* HFMessageCellTableViewCell.m */; };
 		4A11C7191A097596003187B8 /* HFMessageCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A11C7171A097596003187B8 /* HFMessageCellTableViewCell.xib */; };
-		4A1F58031A09E100002703D2 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1F58021A09E100002703D2 /* ImageExtensions.swift */; };
+		4A1F58031A09E100002703D2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1F58021A09E100002703D2 /* Extensions.swift */; };
 		4A88D8D21A04C71600B785B0 /* HFMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */; };
 		4ADA2A1E1A0951D1000C03DA /* HFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA2A1D1A0951D1000C03DA /* HFPerson.m */; };
 		4C8A5F42ADA44963A8B5A023 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210EA750C6A2416A94B2E18E /* libPods.a */; };
@@ -57,7 +57,7 @@
 		4A11C7161A097596003187B8 /* HFMessageCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFMessageCellTableViewCell.m; sourceTree = "<group>"; };
 		4A11C7171A097596003187B8 /* HFMessageCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HFMessageCellTableViewCell.xib; sourceTree = "<group>"; };
 		4A1F58011A09E0FF002703D2 /* Helpful-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Helpful-Bridging-Header.h"; sourceTree = "<group>"; };
-		4A1F58021A09E100002703D2 /* ImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
+		4A1F58021A09E100002703D2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4A88D8D01A04C71600B785B0 /* HFMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFMessagesViewController.h; sourceTree = "<group>"; };
 		4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFMessagesViewController.m; sourceTree = "<group>"; };
 		4ADA2A1C1A0951D1000C03DA /* HFPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFPerson.h; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 		756BF69A184B389000423025 = {
 			isa = PBXGroup;
 			children = (
-				4A1F58021A09E100002703D2 /* ImageExtensions.swift */,
+				4A1F58021A09E100002703D2 /* Extensions.swift */,
 				756BF6AC184B389100423025 /* Helpful */,
 				756BF6CB184B389100423025 /* HelpfulTests */,
 				756BF6A5184B389000423025 /* Frameworks */,
@@ -422,7 +422,7 @@
 				8C4C311618EF352B00A2F490 /* NSNumber+HFAdditions.m in Sources */,
 				8C30DDDE18E60C7200FC80F8 /* HFCredentials.m in Sources */,
 				8CC5A2FF18E61C5A00177D11 /* HFAccount.m in Sources */,
-				4A1F58031A09E100002703D2 /* ImageExtensions.swift in Sources */,
+				4A1F58031A09E100002703D2 /* Extensions.swift in Sources */,
 				756BF6B3184B389100423025 /* main.m in Sources */,
 				8C4C311C18EF362200A2F490 /* HFConversationsContainerViewController.m in Sources */,
 				4A11C7181A097596003187B8 /* HFMessageCellTableViewCell.m in Sources */,

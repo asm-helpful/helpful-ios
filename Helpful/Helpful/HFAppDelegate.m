@@ -12,6 +12,8 @@
 #import "HFAccountsViewController.h"
 #import "HFCredentials.h"
 
+#import "Helpful-Swift.h"
+
 @implementation HFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -21,17 +23,13 @@
     RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     
     //Apple styles
-    UIColor *mainBackgroundColor = [UIColor colorWithRed:243.0/255.0 green:248./255.0 blue:249.0/255.0 alpha:1.0];
-    UIColor *navigationbarBackgroundColor = [UIColor colorWithRed:57.0/255.0 green:60./255.0 blue:65.0/255.0 alpha:1.0];
-    UIColor *separatorColor = [UIColor colorWithRed:224.0/255.0f green:229.0/255.0 blue:230.0/255.0 alpha:1.0];
-
-    [UINavigationBar appearance].barTintColor = navigationbarBackgroundColor;
+    
+    [UINavigationBar appearance].barTintColor = [UIColor blackBackgroundColor];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    [UITableView appearance].backgroundColor = mainBackgroundColor;
-    [UITableView appearance].separatorColor = separatorColor;
-    [UITableViewCell appearance].backgroundColor = mainBackgroundColor;
-
+    [UITableView appearance].backgroundColor = [UIColor lightBlueBackground];
+    [UITableView appearance].separatorColor = [UIColor separatorColor];
+    [UITableViewCell appearance].backgroundColor = [UIColor lightBlueBackground];
 
     // Configure RestKit.
     NSURL *baseURL = [NSURL URLWithString:HFBaseURLString];
