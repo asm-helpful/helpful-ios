@@ -34,7 +34,8 @@
                                @"subject": HFTypedKeyPath(HFConversation, subject),
                                @"created": HFTypedKeyPath(HFConversation, created),
                                @"updated": HFTypedKeyPath(HFConversation, updated),
-                               @"number": HFTypedKeyPath(HFConversation, number)};
+                               @"number": HFTypedKeyPath(HFConversation, number),
+                               @"tags": HFTypedKeyPath(HFConversation, tags)};
         [mapping addAttributeMappingsFromDictionary:dict];
         
         // Add message relationship mapping.

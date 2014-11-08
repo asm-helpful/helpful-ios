@@ -21,7 +21,7 @@
                                @"updated": HFTypedKeyPath(HFTagEvent, updated),
                                @"tag": HFTypedKeyPath(HFTagEvent, tagName)};
         [mapping addAttributeMappingsFromDictionary:dict];
-        [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"user"
+        [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"user.person"
                                                                                 toKeyPath:@"person"
                                                                               withMapping:[HFPerson objectMapping]]];
 

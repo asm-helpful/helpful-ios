@@ -27,7 +27,6 @@
 @property (nonatomic, strong) NSDate *updated;
 
 // A set of tags. Optional.
-// TODO: implement this!
 @property (nonatomic, copy) NSSet *tags;
 
 // An array of messages. Always contains at least one message.

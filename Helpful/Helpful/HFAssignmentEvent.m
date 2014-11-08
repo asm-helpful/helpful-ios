@@ -21,10 +21,10 @@
                                @"created": HFTypedKeyPath(HFAssignmentEvent, created),
                                @"updated": HFTypedKeyPath(HFAssignmentEvent, updated)};
         [mapping addAttributeMappingsFromDictionary:dict];
-        [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"user"
+        [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"user.person"
                                                                                 toKeyPath:@"person"
                                                                               withMapping:[HFPerson objectMapping]]];
-        [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"assignee"
+        [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"assignee.person"
                                                                                 toKeyPath:@"assignee"
                                                                               withMapping:[HFAssignee objectMapping]]];
 
