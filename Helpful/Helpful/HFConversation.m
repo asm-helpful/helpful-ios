@@ -9,6 +9,8 @@
 #import "HFConversation.h"
 #import "HFMessage.h"
 #import "HFAccount.h"
+#import "HFTagEvent.h"
+#import "HFAssignmentEvent.h"
 
 #import "NSNumber+HFAdditions.h"
 
@@ -40,7 +42,15 @@
         RKRelationshipMapping *messagesRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"messages" toKeyPath:HFTypedKeyPath(HFConversation, messages) withMapping:messageMapping];
         [mapping addPropertyMapping:messagesRelationship];
         
-        // TODO: map tags
+        // Add tagEvent mapping.
+        RKObjectMapping *tagEventMapping = [HFTagEvent objectMapping];
+        RKRelationshipMapping *tagEventRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"tag_events" toKeyPath:HFTypedKeyPath(HFConversation, tagEvents) withMapping:tagEventMapping];
+        [mapping addPropertyMapping:tagEventRelationship];
+
+        RKObjectMapping *assignmentEventMapping = [HFAssignmentEvent objectMapping];
+        RKRelationshipMapping *assignmentEventRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"assignment_events" toKeyPath:HFTypedKeyPath(HFConversation, assignmentEvents) withMapping:assignmentEventMapping];
+        [mapping addPropertyMapping:assignmentEventRelationship];
+
     });
     return mapping;
 }

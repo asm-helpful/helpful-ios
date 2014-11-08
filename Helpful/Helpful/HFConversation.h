@@ -33,6 +33,12 @@
 // An array of messages. Always contains at least one message.
 @property (nonatomic, copy) NSArray *messages;
 
+// An array of tag events. Can be empty.
+@property (nonatomic, copy) NSArray *tagEvents;
+
+// An array of assignment events. Can be empty.
+@property (nonatomic, copy) NSArray *assignmentEvents;
+
 // TODO: what's the purpose of this?
 @property (nonatomic, strong) NSNumber *number;
 
