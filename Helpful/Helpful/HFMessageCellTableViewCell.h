@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 
 #import "HFMessage.h"
+#import "HFTagEvent.h"
+#import "HFAssignmentEvent.h"
 
 @interface HFMessageCellTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) HFMessage* message;
+@property (weak, nonatomic) HFTagEvent* tagEvent;
+@property (weak, nonatomic) HFAssignmentEvent* assignmentEvent;
+
 @property (weak, nonatomic) NSString* conversationSubject;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameMailLabel;

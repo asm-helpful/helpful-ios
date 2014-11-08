@@ -17,7 +17,4 @@
 /// The `HFConversation` that the `HFMessages` are associated with.
 @property (nonatomic, strong, readonly) HFConversation *conversation;
 
-/// An array of `HFMessage`s that have been fetched.
-@property (nonatomic, copy, readonly) NSArray *messages;
-
 @end

@@ -16,9 +16,11 @@
 
 @interface HFMessagesViewController ()
 
-@property (nonatomic, copy, readwrite) NSArray *messages;
+@property (nonatomic, copy, readwrite) NSArray *conversationItems;
 
 @end
+
+static NSString * messageCellIdentifier = @"MessageCell";
 
 @implementation HFMessagesViewController
 
@@ -31,12 +33,13 @@
 
 #pragma mark - Accessors
 
-- (void)setMessages:(NSArray *)messages {
-    if (![_messages isEqualToArray:messages]) {
-        //Explicit copy not needed because sorting this way implies a copy.
-        _messages = [messages sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"created" ascending:YES]]];
+-(void)setConversationItems:(NSArray *)conversationItems {
+    if (![_conversationItems isEqualToArray:conversationItems]) {
 
-        //Sort messages ascending on created field
+        //Sort ascending on created field
+        //Explicit copy not needed because sorting this way implies a copy.
+        _conversationItems = [conversationItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"created" ascending:YES]]];
+
         [self.tableView reloadData];
     }
 }
@@ -46,14 +49,14 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"HFMessageCellTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HFMessageCellTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellIdentifier];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Reply", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    if (!self.messages) {
+    if (!self.conversationItems) {
         [self hf_fetchMessages];
     }
 }
@@ -65,16 +68,30 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.messages.count;
+    return self.conversationItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    HFMessageCellTableViewCell * messageCell = (HFMessageCellTableViewCell *)[tableView dequeueReusableCellWithIdentifier:messageCellIdentifier forIndexPath:indexPath];
 
-    [self hf_configureCell:cell atIndexPath:indexPath];
+    id conversationItem = self.conversationItems[indexPath.row];
+    
+    if ([conversationItem isKindOfClass:[HFMessage class]]) {
+        messageCell.message = conversationItem;
+    } else if ([conversationItem isKindOfClass:[HFTagEvent class]]) {
+        messageCell.tagEvent = conversationItem;
+    } else if ([conversationItem isKindOfClass:[HFAssignmentEvent class]]) {
+        messageCell.assignmentEvent = conversationItem;
+    }
 
-    return cell;
+    if (indexPath.row == 0) {
+        messageCell.conversationSubject = self.conversation.subject;
+        messageCell.decorationBarConstraint.constant = 50.f;
+    } else {
+        messageCell.decorationBarConstraint.constant = -10.f;
+    }
+
+    return messageCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,23 +111,16 @@
     RKObjectRequestOperation *operation = [HFMessage fetchMessageRequestOperationForConversation:self.conversation];
     NSAssert(operation, @"Undefined request operation");
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        self.messages = [mappingResult array];
+        NSMutableArray *data = [NSMutableArray array];
+        [data addObjectsFromArray:[mappingResult array]];
+        [data addObjectsFromArray:self.conversation.tagEvents];
+        [data addObjectsFromArray:self.conversation.assignmentEvents];
+        self.conversationItems = data;
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         // TODO: handle this!
         NSLog(@"could not fetch conversations: %@", error);
     }];
     [operation start];
-}
-
-- (void)hf_configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    HFMessageCellTableViewCell * messageCell = (HFMessageCellTableViewCell *)cell;
-    if (indexPath.row == 0) {
-        messageCell.decorationBarConstraint.constant = 50.f;
-    } else {
-        messageCell.decorationBarConstraint.constant = -10.f;
-    }
-    messageCell.conversationSubject = self.conversation.subject;
-    messageCell.message = self.messages[indexPath.row];
 }
 
 @end
