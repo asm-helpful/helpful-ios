@@ -65,7 +65,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.messages.count * 10;
+    return self.messages.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,7 +110,7 @@
         messageCell.decorationBarConstraint.constant = -10.f;
     }
     messageCell.conversationSubject = self.conversation.subject;
-    messageCell.message = self.messages[0];
+    messageCell.message = self.messages[indexPath.row];
 }
 
 @end
