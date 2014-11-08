@@ -109,20 +109,8 @@
     } else {
         messageCell.decorationBarConstraint.constant = -10.f;
     }
-    HFMessage *message = self.messages[0];
-    messageCell.messageLabel.text = message.body;
-    messageCell.messageLabel.numberOfLines = 2;
-    messageCell.titleLabel.text = self.conversation.subject;
-    messageCell.nameMailLabel.text = [NSString stringWithFormat:@"%@, %@", message.person.name, message.person.email];
-    NSURL *imageUrl = [NSURL URLWithString:message.person.gravatarUrl];
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:imageUrl] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        if (error) {
-            NSLog(@"Error loading URL %@", imageUrl);
-            return;
-        }
-        messageCell.portratImage.image = [[UIImage imageWithData:data] roundImageFor:messageCell.portratImage.bounds];
-    }];
-//    cell.imageView
+    messageCell.conversationSubject = self.conversation.subject;
+    messageCell.message = self.messages[0];
 }
 
 @end

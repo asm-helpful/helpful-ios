@@ -22,14 +22,21 @@
     
     RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     
+//    Open Sans / OpenSans
+//    Open Sans / OpenSans-Bold
+//    Open Sans Semibold / OpenSans-Semibold
+    
     //Apple styles
     
     [UINavigationBar appearance].barTintColor = [UIColor blackBackgroundColor];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Semibold" size:24.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
     [UITableView appearance].backgroundColor = [UIColor lightBlueBackground];
     [UITableView appearance].separatorColor = [UIColor separatorColor];
     [UITableViewCell appearance].backgroundColor = [UIColor lightBlueBackground];
+//    [UILabel appearance].font = [UIFont fontWithName:@"OpenSans-Semibold" size:24.0];
+//    [UITableViewCell appearance].textLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:24.0];
+//    [UITableViewCell appearance].detailTextLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:24.0];
 
     // Configure RestKit.
     NSURL *baseURL = [NSURL URLWithString:HFBaseURLString];

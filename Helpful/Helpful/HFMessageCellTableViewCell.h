@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "HFMessage.h"
+
 @interface HFMessageCellTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) HFMessage* message;
+@property (weak, nonatomic) NSString* conversationSubject;
+
 @property (weak, nonatomic) IBOutlet UILabel *nameMailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
