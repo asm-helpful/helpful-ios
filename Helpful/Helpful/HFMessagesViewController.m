@@ -48,6 +48,12 @@ static NSString * messageCellIdentifier = @"MessageCell";
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    UIView *lineView = [[UIView alloc]init];
+    lineView.frame = CGRectMake(27.0, 0.0, 1.0, self.tableView.bounds.size.height);
+    lineView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
+    lineView.backgroundColor = [UIColor redColor];
+    [self.tableView addSubview:lineView];
+    [self.tableView sendSubviewToBack:lineView];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HFMessageCellTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellIdentifier];
     
@@ -63,6 +69,21 @@ static NSString * messageCellIdentifier = @"MessageCell";
 
 #pragma mark - UITableViewDataSource
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UITableViewCell *headerCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    
+    headerCell.textLabel.text = @"drop@dorkathon from code team.";
+    headerCell.detailTextLabel.text = @"Mark Johnson, john@jingleheimer-schmidt";
+    headerCell.backgroundColor = [UIColor redColor];
+    
+    headerCell.frame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, [self tableView:tableView heightForHeaderInSection:section]);
+    
+    return headerCell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 76.0;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -82,13 +103,6 @@ static NSString * messageCellIdentifier = @"MessageCell";
         messageCell.tagEvent = conversationItem;
     } else if ([conversationItem isKindOfClass:[HFAssignmentEvent class]]) {
         messageCell.assignmentEvent = conversationItem;
-    }
-
-    if (indexPath.row == 0) {
-        messageCell.conversationSubject = self.conversation.subject;
-        messageCell.decorationBarConstraint.constant = 50.f;
-    } else {
-        messageCell.decorationBarConstraint.constant = -10.f;
     }
 
     return messageCell;
