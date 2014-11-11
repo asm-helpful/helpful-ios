@@ -36,14 +36,6 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
     return _timeIntervalFormatter;
 }
 
-- (void)setConversationSubject:(NSString *)conversationSubject {
-    self.titleLabel.text = conversationSubject;
-}
-
-- (NSString *)conversationSubject {
-    return self.titleLabel.text;
-}
-
 - (void)setMessage:(HFMessage *)message {
     _message = message;
     _assignmentEvent = nil;

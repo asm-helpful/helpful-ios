@@ -51,9 +51,13 @@ static NSString * messageCellIdentifier = @"MessageCell";
     UIView *lineView = [[UIView alloc]init];
     lineView.frame = CGRectMake(27.0, 0.0, 1.0, self.tableView.bounds.size.height);
     lineView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
-    lineView.backgroundColor = [UIColor redColor];
-    [self.tableView addSubview:lineView];
-    [self.tableView sendSubviewToBack:lineView];
+    lineView.backgroundColor = [UIColor separatorColor];
+    UIView *backgroundView = [[UIView alloc]init];
+    backgroundView.backgroundColor = [UIColor lightBlueBackground];
+    backgroundView.frame = self.tableView.bounds;
+    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [backgroundView addSubview:lineView];
+    self.tableView.backgroundView = backgroundView;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HFMessageCellTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellIdentifier];
     
@@ -74,7 +78,7 @@ static NSString * messageCellIdentifier = @"MessageCell";
     
     headerCell.textLabel.text = @"drop@dorkathon from code team.";
     headerCell.detailTextLabel.text = @"Mark Johnson, john@jingleheimer-schmidt";
-    headerCell.backgroundColor = [UIColor redColor];
+    headerCell.backgroundColor = [UIColor separatorColor];
     
     headerCell.frame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, [self tableView:tableView heightForHeaderInSection:section]);
     

@@ -18,10 +18,7 @@
 @property (weak, nonatomic) HFTagEvent* tagEvent;
 @property (weak, nonatomic) HFAssignmentEvent* assignmentEvent;
 
-@property (weak, nonatomic) NSString* conversationSubject;
-
 @property (weak, nonatomic) IBOutlet UILabel *nameMailLabel;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *portratImage;
