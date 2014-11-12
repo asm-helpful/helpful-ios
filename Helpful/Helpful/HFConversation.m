@@ -10,6 +10,7 @@
 #import "HFMessage.h"
 #import "HFAccount.h"
 #import "HFTagEvent.h"
+#import "HFPerson.h"
 #import "HFAssignmentEvent.h"
 
 #import "NSNumber+HFAdditions.h"
@@ -51,6 +52,10 @@
         RKObjectMapping *assignmentEventMapping = [HFAssignmentEvent objectMapping];
         RKRelationshipMapping *assignmentEventRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"assignment_events" toKeyPath:HFTypedKeyPath(HFConversation, assignmentEvents) withMapping:assignmentEventMapping];
         [mapping addPropertyMapping:assignmentEventRelationship];
+
+        RKObjectMapping *creatorMapping = [HFPerson objectMapping];
+        RKRelationshipMapping *creatorRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"creator_person" toKeyPath:HFTypedKeyPath(HFConversation, creatorPerson) withMapping:creatorMapping];
+        [mapping addPropertyMapping:creatorRelationship];
 
     });
     return mapping;

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 
-@class HFAccount;
+@class HFAccount, HFPerson;
 
 /// Represents a conversation.
 @interface HFConversation : NSObject
@@ -37,6 +37,9 @@
 
 // An array of assignment events. Can be empty.
 @property (nonatomic, copy) NSArray *assignmentEvents;
+
+/// The person that created that message.
+@property (nonatomic, strong) HFPerson *creatorPerson;
 
 // TODO: what's the purpose of this?
 @property (nonatomic, strong) NSNumber *number;

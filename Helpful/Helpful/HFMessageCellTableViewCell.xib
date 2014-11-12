@@ -32,21 +32,21 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="800" verticalCompressionResistancePriority="800" placeholderIntrinsicWidth="90" placeholderIntrinsicHeight="24" text="name / mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="7rM-RQ-lgp">
-                        <rect key="frame" x="56" y="8" width="188" height="24"/>
+                        <rect key="frame" x="56" y="8" width="198" height="24"/>
                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans Semibold" pointSize="13"/>
                         <color key="textColor" red="0.33333333333333331" green="0.34509803921568627" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="800" verticalCompressionResistancePriority="800" text="message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="XaN-ba-gGn">
-                        <rect key="frame" x="56" y="32" width="188" height="16.5"/>
+                        <rect key="frame" x="56" y="32" width="198" height="16.5"/>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.33333333333333331" green="0.34509803921568627" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9X-Mo-84f">
-                        <rect key="frame" x="252" y="8" width="60" height="16.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9X-Mo-84f">
+                        <rect key="frame" x="262" y="8" width="50" height="16.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="Ze5-an-zeN"/>
+                            <constraint firstAttribute="width" constant="50" id="Ze5-an-zeN"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -30,7 +30,7 @@
     
     [UINavigationBar appearance].barTintColor = [UIColor blackBackgroundColor];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Semibold" size:24.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Semibold" size:17.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
     [UITableView appearance].backgroundColor = [UIColor lightBlueBackground];
     [UITableView appearance].separatorColor = [UIColor separatorColor];
     [UITableViewCell appearance].backgroundColor = [UIColor clearColor];

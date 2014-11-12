@@ -76,8 +76,14 @@ static NSString * messageCellIdentifier = @"MessageCell";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UITableViewCell *headerCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     
-    headerCell.textLabel.text = @"drop@dorkathon from code team.";
-    headerCell.detailTextLabel.text = @"Mark Johnson, john@jingleheimer-schmidt";
+    headerCell.textLabel.text = self.conversation.subject;
+    headerCell.textLabel.font = [UIFont fontWithName:@"OpenSans" size:18.0];
+    
+    
+    NSMutableAttributedString *detailText = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@, ", self.conversation.creatorPerson.name] attributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Semibold" size:12.0]}];
+    [detailText appendAttributedString:[[NSAttributedString alloc] initWithString:self.conversation.creatorPerson.email attributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:12.0]}]];
+    
+    headerCell.detailTextLabel.attributedText = detailText;
     headerCell.backgroundColor = [UIColor separatorColor];
     
     headerCell.frame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, [self tableView:tableView heightForHeaderInSection:section]);
