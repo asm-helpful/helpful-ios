@@ -21,6 +21,16 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
 @interface HFMessageCellTableViewCell ()
 
 @property (nonatomic, readonly) TTTTimeIntervalFormatter *timeIntervalFormatter;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *annotationImageWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *annotationImageHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UILabel *nameMailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *portratImage;
+
+@property (weak, nonatomic) IBOutlet UIImageView *annotationImage;
 
 @end
 
@@ -62,6 +72,8 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
     [self setTimeLabelForDate:_assignmentEvent.created];
     self.messageLabel.text = nil;
     self.nameMailLabel.attributedText = assignmentTitleText;
+    
+    [self setAnnotationImageForUrlString:assignmentEvent.assignee.person.gravatarUrl];
 }
 
 - (void)setTagEvent:(HFTagEvent *)tagEvent {
@@ -71,7 +83,7 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
 
     [self setImageForUrlString:_tagEvent.person.gravatarUrl];
     [self setTimeLabelForDate:_tagEvent.created];
-    self.messageLabel.text = [NSString stringWithFormat:@"# %@", tagEvent.tagName];
+    self.messageLabel.attributedText = [[NSAttributedString alloc ]initWithString:[NSString stringWithFormat:@"# %@", tagEvent.tagName] attributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Semibold" size:12.0], NSForegroundColorAttributeName: [UIColor tagColor]}];
 
     self.nameMailLabel.text = [NSString stringWithFormat:@"%@ tagged this ticket with", tagEvent.person.name];
 }
@@ -88,9 +100,36 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
     }];
 }
 
+- (void)viewDidLayoutSubviews
+{
+//    [super viewDidLayoutSubviews];
+//    myLabel.preferredMaxLayoutWidth = myLabel.frame.size.width;
+//    [self.view layoutIfNeeded];
+}
+
 - (void) setTimeLabelForDate:(NSDate*)createdDate {
     NSString *timeString = [self.timeIntervalFormatter stringForTimeInterval:[createdDate timeIntervalSinceDate:[NSDate new]]];
     self.timeLabel.text = timeString;
+}
+
+- (void) setAnnotationImageForUrlString:(NSString *)imageUrlString {
+    [self setImageForAnnotationImage:[UIImage imageNamed:@"portrait"]];
+    NSURL *imageUrl = [NSURL URLWithString:imageUrlString];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:imageUrl] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error loading URL %@", imageUrl);
+            return;
+        }
+        self.annotationImage.image = [[UIImage imageWithData:data] roundImageFor:self.portratImage.bounds];
+    }];
+}
+
+- (void) setImageForAnnotationImage:(UIImage *)annotationImage {
+    self.annotationImage.hidden = annotationImage == nil;
+    self.annotationImageHeightConstraint.constant = annotationImage.size.height;
+    self.annotationImageWidthConstraint.constant = annotationImage.size.width;
+    self.messageBottomConstraint.constant = annotationImage.size.height * -1;
+    self.annotationImage.image = annotationImage;
 }
 
 - (void) resetCellContent {
@@ -100,6 +139,9 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
     self.nameMailLabel.numberOfLines = 1;
     self.nameMailLabel.text = nil;
     self.nameMailLabel.attributedText = nil;
+    self.messageLabel.text = nil;
+    self.messageLabel.attributedText = nil;
+    [self setImageForAnnotationImage:nil];
 }
 
 - (void)awakeFromNib {

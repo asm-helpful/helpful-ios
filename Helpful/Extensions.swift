@@ -13,8 +13,9 @@ let blackBackgroundColorConst = UIColor.colorWithHexString("333333")
 let mutedTextColorConst = UIColor.colorWithHexString("555555")
 let lightBlueBackgroundConst = UIColor.colorWithHexString("f1f9fb")
 let logoRedColorConst = UIColor.colorWithHexString("ff4b4b")
-let timeLabelColorConst = UIColor.colorWithHexString("e5e5e5")
-let separatorColorConst = timeLabelColorConst
+let timeLabelColorConst = UIColor.colorWithHexString("545761")
+let separatorColorConst = UIColor.colorWithHexString("e5e5e5")
+let tagColorConst = UIColor.colorWithHexString("16a0b5")
 
 extension UIColor {
     
@@ -44,6 +45,10 @@ extension UIColor {
     
     public class var separatorColor : UIColor {
         return separatorColorConst
+    }
+
+    public class var tagColor : UIColor {
+        return tagColorConst
     }
 
     public class func colorWithHexString(var hexString: String, alpha: Float = 1.0) -> UIColor {
