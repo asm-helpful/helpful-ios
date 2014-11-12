@@ -3,3 +3,4 @@ source 'https://github.com/CocoaPods/Specs.git'
 pod "RestKit"
 pod "FXKeychain"
 pod "FormatterKit/TimeIntervalFormatter"
+pod "FontAwesomeIconFactory"

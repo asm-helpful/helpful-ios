@@ -13,6 +13,8 @@
 #import "HFPerson.h"
 
 #import "Helpful-Swift.h"
+#import <NIKFontAwesomeIconFactory.h>
+#import <NIKFontAwesomeIconFactory+iOS.h>
 
 @interface HFMessagesViewController ()
 
@@ -61,7 +63,36 @@ static NSString * messageCellIdentifier = @"MessageCell";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HFMessageCellTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellIdentifier];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Reply", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
+    //TODO move to appropriate page
+    NIKFontAwesomeIconFactory *iconFactory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    iconFactory.padded = NO;
+    iconFactory.size = 44.0;
+//    iconFactory.edgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+    UIButton *downButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *downImage = [iconFactory createImageForIcon:NIKFontAwesomeIconAngleDown];
+    downButton.bounds = CGRectMake(0.0, 0.0, downImage.size.width, downImage.size.height);
+    [downButton setImage:downImage forState:UIControlStateNormal];
+
+    UIButton *upButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *upImage = [iconFactory createImageForIcon:NIKFontAwesomeIconAngleUp];
+    upButton.bounds = CGRectMake(0.0, 0.0, upImage.size.width, upImage.size.height);
+    [upButton setImage:upImage forState:UIControlStateNormal];
+
+    NSArray *rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:upButton], [[UIBarButtonItem alloc]initWithCustomView:downButton]];
+
+    
+    
+//    for (UIBarButtonItem *item in rightBarButtonItems) {
+//        item.imageInsets = UIEdgeInsetsMake(0.0, -5.0, 0.0, -5.0);
+//        item.customView.layoutMargins = UIEdgeInsetsMake(0.0, -5.0, 0.0, -5.0);
+//    }
+    self.navigationItem.rightBarButtonItems = rightBarButtonItems;
+
+    
+    
+    
+    //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Reply", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
+    
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
