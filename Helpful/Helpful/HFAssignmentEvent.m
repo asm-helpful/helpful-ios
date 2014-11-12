@@ -24,7 +24,7 @@
         [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"user.person"
                                                                                 toKeyPath:@"person"
                                                                               withMapping:[HFPerson objectMapping]]];
-        [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"assignee.person"
+        [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"assignee"
                                                                                 toKeyPath:@"assignee"
                                                                               withMapping:[HFAssignee objectMapping]]];
 

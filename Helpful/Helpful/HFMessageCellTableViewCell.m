@@ -10,6 +10,7 @@
 
 #import "HFPerson.h"
 #import "HFConversation.h"
+#import "HFAssignee.h"
 
 #import "Helpful-Swift.h"
 
@@ -40,10 +41,13 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
     _message = message;
     _assignmentEvent = nil;
     _tagEvent = nil;
+    self.nameMailLabel.numberOfLines = 1;
 
+    NSMutableAttributedString *nameMailText = [[NSMutableAttributedString alloc]initWithString:message.person.name attributes:@{}];
     self.messageLabel.text = message.body;
     self.messageLabel.numberOfLines = 2;
-    self.nameMailLabel.text = [NSString stringWithFormat:@"%@, %@", message.person.name, message.person.email];
+    self.nameMailLabel.text = message.person.name;
+//    self.nameMailLabel.attributedText = nameMailText;
     
     [self setImageForUrlString:message.person.gravatarUrl];
     [self setTimeLabelForDate:_message.created];
@@ -53,18 +57,30 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
     _message = nil;
     _assignmentEvent = assignmentEvent;
     _tagEvent = nil;
+    self.nameMailLabel.numberOfLines = 0;
+    self.messageLabel.layer.borderWidth = 0.0;
+    self.messageLabel.layer.borderColor = nil;
+    self.messageLabel.layer.cornerRadius = 0.0;
+
     
     [self setImageForUrlString:_assignmentEvent.person.gravatarUrl];
     [self setTimeLabelForDate:_assignmentEvent.created];
+    self.messageLabel.text = nil;
+    self.nameMailLabel.text = [NSString stringWithFormat:@"%@ assigned %@ to this ticket", assignmentEvent.person.name, assignmentEvent.assignee.person.name];
+
 }
 
 - (void)setTagEvent:(HFTagEvent *)tagEvent {
     _message = nil;
     _assignmentEvent = nil;
     _tagEvent = tagEvent;
+    self.nameMailLabel.numberOfLines = 0;
     
     [self setImageForUrlString:_tagEvent.person.gravatarUrl];
     [self setTimeLabelForDate:_tagEvent.created];
+    self.messageLabel.text = [NSString stringWithFormat:@"# %@", tagEvent.tagName];
+
+    self.nameMailLabel.text = [NSString stringWithFormat:@"%@ tagged this ticket with", tagEvent.person.name];
 }
 
 - (void) setImageForUrlString:(NSString *)imageUrlString {
