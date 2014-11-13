@@ -76,6 +76,13 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
     [self setAnnotationImageForUrlString:assignmentEvent.assignee.person.gravatarUrl];
 }
 
+- (void)enableExpanded {
+    self.nameMailLabel.numberOfLines = 0;
+    self.messageLabel.numberOfLines = 0;
+
+}
+
+
 - (void)setTagEvent:(HFTagEvent *)tagEvent {
     [self resetCellContent];
     _tagEvent = tagEvent;

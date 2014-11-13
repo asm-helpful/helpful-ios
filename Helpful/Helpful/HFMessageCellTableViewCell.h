@@ -18,5 +18,7 @@
 @property (weak, nonatomic) HFTagEvent* tagEvent;
 @property (weak, nonatomic) HFAssignmentEvent* assignmentEvent;
 
+- (void)enableExpanded;
+
 
 @end

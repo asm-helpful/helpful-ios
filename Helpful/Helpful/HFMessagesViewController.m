@@ -24,9 +24,12 @@
 @property (nonatomic, weak) UIBarButtonItem* upBarButtonItem;
 @property (nonatomic, weak) UIBarButtonItem* downBarButtonItem;
 
+@property (nonatomic, assign) NSInteger singleMessageIndex;
+
 @end
 
 static NSString * messageCellIdentifier = @"MessageCell";
+static NSString * expandedMessageCellIdentifier = @"ExpandedMessageCell";
 
 @implementation HFMessagesViewController
 
@@ -35,6 +38,8 @@ static NSString * messageCellIdentifier = @"MessageCell";
         _conversations = conversations;
         
         _currentConversationIndex = NSNotFound;
+        
+        _singleMessageIndex = NSNotFound;
     }
     return self;
 }
@@ -58,6 +63,8 @@ static NSString * messageCellIdentifier = @"MessageCell";
          } completion:^(BOOL finished) {}];
     }
     
+    [self updateBarButtons];
+    
     if (conversationItems.count > 0) {
         BOOL enableUp = YES;
         BOOL enableDown = YES;
@@ -69,7 +76,8 @@ static NSString * messageCellIdentifier = @"MessageCell";
         }
         
         self.downBarButtonItem.enabled = enableDown;
-        self.upBarButtonItem.enabled = enableUp;    }
+        self.upBarButtonItem.enabled = enableUp;
+    }
 }
 
 #pragma mark - UIViewController
@@ -88,38 +96,46 @@ static NSString * messageCellIdentifier = @"MessageCell";
     self.tableView.backgroundView = backgroundView;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HFMessageCellTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellIdentifier];
-    
-    NIKFontAwesomeIconFactory *iconFactory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
-    iconFactory.padded = NO;
-    iconFactory.size = 44.0;
-    
-    UIButton *downButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *downImage = [iconFactory createImageForIcon:NIKFontAwesomeIconAngleDown];
-    downButton.bounds = CGRectMake(0.0, 0.0, downImage.size.width, downImage.size.height);
-    [downButton setImage:downImage forState:UIControlStateNormal];
-    [downButton addTarget:self action:@selector(nextMessage:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HFMessageCellTableViewCell" bundle:nil] forCellReuseIdentifier:expandedMessageCellIdentifier];
+}
 
-    UIButton *upButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *upImage = [iconFactory createImageForIcon:NIKFontAwesomeIconAngleUp];
-    upButton.bounds = CGRectMake(0.0, 0.0, upImage.size.width, upImage.size.height);
-    [upButton setImage:upImage forState:UIControlStateNormal];
-    [upButton addTarget:self action:@selector(previousMessage:) forControlEvents:UIControlEventTouchUpInside];
+- (void) updateBarButtons {
+    NSArray *rightBarButtonItems = nil;
+    if (self.singleMessageIndex == NSNotFound) {
+        NIKFontAwesomeIconFactory *iconFactory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+        iconFactory.padded = NO;
+        iconFactory.size = 44.0;
+        
+        UIButton *downButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *downImage = [iconFactory createImageForIcon:NIKFontAwesomeIconAngleDown];
+        downButton.bounds = CGRectMake(0.0, 0.0, downImage.size.width, downImage.size.height);
+        [downButton setImage:downImage forState:UIControlStateNormal];
+        [downButton addTarget:self action:@selector(nextMessage:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *upButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *upImage = [iconFactory createImageForIcon:NIKFontAwesomeIconAngleUp];
+        upButton.bounds = CGRectMake(0.0, 0.0, upImage.size.width, upImage.size.height);
+        [upButton setImage:upImage forState:UIControlStateNormal];
+        [upButton addTarget:self action:@selector(previousMessage:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *downBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:downButton];
+        UIBarButtonItem *upBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:upButton];
+        
+        self.downBarButtonItem = downBarButtonItem;
+        self.upBarButtonItem = upBarButtonItem;
+        
+        rightBarButtonItems = @[downBarButtonItem, upBarButtonItem];
+    }
     
-    UIBarButtonItem *downBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:downButton];
-    UIBarButtonItem *upBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:upButton];
-    
-    self.downBarButtonItem = downBarButtonItem;
-    self.upBarButtonItem = upBarButtonItem;
-
-    NSArray *rightBarButtonItems = @[downBarButtonItem, upBarButtonItem];
-    
-
-    self.navigationItem.rightBarButtonItems = rightBarButtonItems;
+    [self.navigationItem setRightBarButtonItems:rightBarButtonItems animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (self.singleMessageIndex != NSNotFound) {
+        return nil;
+    }
     UITableViewCell *headerCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     
     headerCell.textLabel.text = [self.conversations[self.currentConversationIndex] subject];
@@ -138,12 +154,16 @@ static NSString * messageCellIdentifier = @"MessageCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (self.singleMessageIndex != NSNotFound) {
+        return 0.0;
+    }
     return 76.0;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.currentConversationIndex >= self.conversations.count || self.currentConversationIndex < 0) {
         return 0;
     }
+    
     return 1;
 }
 
@@ -151,13 +171,24 @@ static NSString * messageCellIdentifier = @"MessageCell";
     if (self.currentConversationIndex >= self.conversations.count || self.currentConversationIndex < 0) {
         return 0;
     }
+    if (self.singleMessageIndex != NSNotFound) {
+        return 1;
+    }
+
     return self.conversationItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HFMessageCellTableViewCell * messageCell = (HFMessageCellTableViewCell *)[tableView dequeueReusableCellWithIdentifier:messageCellIdentifier forIndexPath:indexPath];
+    HFMessageCellTableViewCell * messageCell;
 
-    id conversationItem = self.conversationItems[indexPath.row];
+    id conversationItem;
+    if (self.singleMessageIndex != NSNotFound) {
+        conversationItem = self.conversationItems[self.singleMessageIndex];
+        messageCell = (HFMessageCellTableViewCell *)[tableView dequeueReusableCellWithIdentifier:expandedMessageCellIdentifier forIndexPath:indexPath];
+    } else {
+      conversationItem = self.conversationItems[indexPath.row];
+        messageCell = (HFMessageCellTableViewCell *)[tableView dequeueReusableCellWithIdentifier:messageCellIdentifier forIndexPath:indexPath];
+    }
     
     if ([conversationItem isKindOfClass:[HFMessage class]]) {
         messageCell.message = conversationItem;
@@ -166,6 +197,10 @@ static NSString * messageCellIdentifier = @"MessageCell";
     } else if ([conversationItem isKindOfClass:[HFAssignmentEvent class]]) {
         messageCell.assignmentEvent = conversationItem;
     }
+    
+    if (self.singleMessageIndex != NSNotFound) {
+        [messageCell enableExpanded];
+    }
 
     return messageCell;
 }
@@ -173,11 +208,29 @@ static NSString * messageCellIdentifier = @"MessageCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
 }
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
 
 #pragma mark - UITableViewDelegate
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.singleMessageIndex != NSNotFound) {
+        return nil;
+    }
+    
+    return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+   HFMessagesViewController* singleMessageVC = [[HFMessagesViewController alloc]initWithConversations:self.conversations];
+    singleMessageVC.singleMessageIndex = indexPath.row;
+    singleMessageVC.conversationItems = self.conversationItems;
+    singleMessageVC.currentConversationIndex = self.currentConversationIndex;
+    
+    [self.navigationController pushViewController:singleMessageVC animated:YES];
 }
 
 #pragma mark - Private Methods
