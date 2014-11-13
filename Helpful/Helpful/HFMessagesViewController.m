@@ -18,7 +18,11 @@
 
 @interface HFMessagesViewController ()
 
+@property (nonatomic, strong, readonly) NSArray *conversations;
+
 @property (nonatomic, copy, readwrite) NSArray *conversationItems;
+@property (nonatomic, weak) UIBarButtonItem* upBarButtonItem;
+@property (nonatomic, weak) UIBarButtonItem* downBarButtonItem;
 
 @end
 
@@ -26,9 +30,11 @@ static NSString * messageCellIdentifier = @"MessageCell";
 
 @implementation HFMessagesViewController
 
-- (id)initWithConversation:(HFConversation *)conversation {
+- (id)initWithConversations:(NSArray *)conversations {
     if ((self = [super initWithStyle:UITableViewStylePlain])) {
-        _conversation = conversation;
+        _conversations = conversations;
+        
+        _currentConversationIndex = NSNotFound;
     }
     return self;
 }
@@ -42,8 +48,28 @@ static NSString * messageCellIdentifier = @"MessageCell";
         //Explicit copy not needed because sorting this way implies a copy.
         _conversationItems = [conversationItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"created" ascending:YES]]];
 
-        [self.tableView reloadData];
+        __weak HFMessagesViewController *weakSelf = self;
+        [UIView transitionWithView: self.tableView
+                          duration: 0.35f
+                           options: UIViewAnimationOptionTransitionCrossDissolve
+                        animations: ^(void)
+         {
+             [weakSelf.tableView reloadData];
+         } completion:^(BOOL finished) {}];
     }
+    
+    if (conversationItems.count > 0) {
+        BOOL enableUp = YES;
+        BOOL enableDown = YES;
+        if (self.currentConversationIndex <= 0) {
+            enableUp = NO;
+        }
+        if (self.currentConversationIndex >= self.conversations.count -1) {
+            enableDown = NO;
+        }
+        
+        self.downBarButtonItem.enabled = enableDown;
+        self.upBarButtonItem.enabled = enableUp;    }
 }
 
 #pragma mark - UIViewController
@@ -63,43 +89,32 @@ static NSString * messageCellIdentifier = @"MessageCell";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HFMessageCellTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellIdentifier];
     
-    //TODO move to appropriate page
     NIKFontAwesomeIconFactory *iconFactory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
     iconFactory.padded = NO;
     iconFactory.size = 44.0;
-//    iconFactory.edgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+    
     UIButton *downButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *downImage = [iconFactory createImageForIcon:NIKFontAwesomeIconAngleDown];
     downButton.bounds = CGRectMake(0.0, 0.0, downImage.size.width, downImage.size.height);
     [downButton setImage:downImage forState:UIControlStateNormal];
+    [downButton addTarget:self action:@selector(nextMessage:) forControlEvents:UIControlEventTouchUpInside];
 
     UIButton *upButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *upImage = [iconFactory createImageForIcon:NIKFontAwesomeIconAngleUp];
     upButton.bounds = CGRectMake(0.0, 0.0, upImage.size.width, upImage.size.height);
     [upButton setImage:upImage forState:UIControlStateNormal];
-
-    NSArray *rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:upButton], [[UIBarButtonItem alloc]initWithCustomView:downButton]];
-
+    [upButton addTarget:self action:@selector(previousMessage:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIBarButtonItem *downBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:downButton];
+    UIBarButtonItem *upBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:upButton];
     
-//    for (UIBarButtonItem *item in rightBarButtonItems) {
-//        item.imageInsets = UIEdgeInsetsMake(0.0, -5.0, 0.0, -5.0);
-//        item.customView.layoutMargins = UIEdgeInsetsMake(0.0, -5.0, 0.0, -5.0);
-//    }
+    self.downBarButtonItem = downBarButtonItem;
+    self.upBarButtonItem = upBarButtonItem;
+
+    NSArray *rightBarButtonItems = @[downBarButtonItem, upBarButtonItem];
+    
+
     self.navigationItem.rightBarButtonItems = rightBarButtonItems;
-
-    
-    
-    
-    //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Reply", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-}
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    if (!self.conversationItems) {
-        [self hf_fetchMessages];
-    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -107,12 +122,12 @@ static NSString * messageCellIdentifier = @"MessageCell";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UITableViewCell *headerCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     
-    headerCell.textLabel.text = self.conversation.subject;
+    headerCell.textLabel.text = [self.conversations[self.currentConversationIndex] subject];
     headerCell.textLabel.font = [UIFont fontWithName:@"OpenSans" size:18.0];
     
     
-    NSMutableAttributedString *detailText = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@, ", self.conversation.creatorPerson.name] attributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Semibold" size:12.0]}];
-    [detailText appendAttributedString:[[NSAttributedString alloc] initWithString:self.conversation.creatorPerson.email attributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:12.0]}]];
+    NSMutableAttributedString *detailText = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@, ", [self.conversations[self.currentConversationIndex] creatorPerson].name] attributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Semibold" size:12.0]}];
+    [detailText appendAttributedString:[[NSAttributedString alloc] initWithString:[self.conversations[self.currentConversationIndex] creatorPerson].email attributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:12.0]}]];
     
     headerCell.detailTextLabel.attributedText = detailText;
     headerCell.backgroundColor = [UIColor separatorColor];
@@ -126,10 +141,16 @@ static NSString * messageCellIdentifier = @"MessageCell";
     return 76.0;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.currentConversationIndex >= self.conversations.count || self.currentConversationIndex < 0) {
+        return 0;
+    }
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.currentConversationIndex >= self.conversations.count || self.currentConversationIndex < 0) {
+        return 0;
+    }
     return self.conversationItems.count;
 }
 
@@ -161,21 +182,44 @@ static NSString * messageCellIdentifier = @"MessageCell";
 
 #pragma mark - Private Methods
 
-- (void)hf_fetchMessages {
+- (void)setCurrentConversationIndex:(NSInteger)newConversationIndex {
+    self.upBarButtonItem.enabled = NO;
+    self.downBarButtonItem.enabled = NO;
+    
+    if (self.conversations.count == 0) {
+        _currentConversationIndex = NSNotFound;
+    } else if (newConversationIndex < 0) {
+        _currentConversationIndex = 0;
+    } else if (newConversationIndex >= self.conversations.count) {
+        _currentConversationIndex = self.conversations.count -1;
+    } else {
+        _currentConversationIndex = newConversationIndex;
+    }
+    
+    self.conversationItems = nil;
+    
     // Fetch all accounts.
-    RKObjectRequestOperation *operation = [HFMessage fetchMessageRequestOperationForConversation:self.conversation];
+    RKObjectRequestOperation *operation = [HFMessage fetchMessageRequestOperationForConversation:self.conversations[self.currentConversationIndex]];
     NSAssert(operation, @"Undefined request operation");
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSMutableArray *data = [NSMutableArray array];
         [data addObjectsFromArray:[mappingResult array]];
-        [data addObjectsFromArray:self.conversation.tagEvents];
-        [data addObjectsFromArray:self.conversation.assignmentEvents];
+        [data addObjectsFromArray:[self.conversations[self.currentConversationIndex] tagEvents]];
+        [data addObjectsFromArray:[self.conversations[self.currentConversationIndex] assignmentEvents]];
         self.conversationItems = data;
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         // TODO: handle this!
         NSLog(@"could not fetch conversations: %@", error);
     }];
     [operation start];
+}
+
+-(void)nextMessage:(id)sender {
+    self.currentConversationIndex++;
+}
+
+-(void)previousMessage:(id)sender {
+    self.currentConversationIndex--;
 }
 
 @end

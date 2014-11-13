@@ -12,9 +12,8 @@
 
 @interface HFMessagesViewController : UITableViewController
 
-- (id)initWithConversation:(HFConversation *)conversation;
+@property (nonatomic, assign) NSInteger currentConversationIndex;
 
-/// The `HFConversation` that the `HFMessages` are associated with.
-@property (nonatomic, strong, readonly) HFConversation *conversation;
+- (id)initWithConversations:(NSArray *)conversations;
 
 @end

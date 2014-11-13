@@ -90,8 +90,9 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    HFConversation *conversation = self.conversations[indexPath.row];
-    [self hf_presentMessagesForConversation:conversation];
+    HFMessagesViewController *controller = [[HFMessagesViewController alloc] initWithConversations:self.conversations];
+    controller.currentConversationIndex = indexPath.row;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - Private Methods
@@ -123,11 +124,6 @@
     HFMessage *latestMessage = [conversation.messages lastObject];
     cell.textLabel.text = conversation.subject;
     cell.detailTextLabel.text = latestMessage.body;
-}
-
-- (void)hf_presentMessagesForConversation:(HFConversation *)conversation {
-    HFMessagesViewController *controller = [[HFMessagesViewController alloc] initWithConversation:conversation];
-    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end
