@@ -91,12 +91,22 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
 - (void) setImageForUrlString:(NSString *)imageUrlString {
     self.portratImage.image = [UIImage imageNamed:@"portrait"];
     NSURL *imageUrl = [NSURL URLWithString:imageUrlString];
+    __weak UIImageView *weakPortraitImageView = self.portratImage;
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:imageUrl] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error loading URL %@", imageUrl);
             return;
         }
-        self.portratImage.image = [[UIImage imageWithData:data] roundImageFor:self.portratImage.bounds];
+        UIImageView *strongPortraitImageView = weakPortraitImageView;
+        if (strongPortraitImageView) {
+            [UIView transitionWithView: self.portratImage
+                              duration: 0.35f
+                               options: UIViewAnimationOptionTransitionCrossDissolve
+                            animations: ^(void)
+             {
+                 weakPortraitImageView.image = [[UIImage imageWithData:data] roundImageFor:weakPortraitImageView.bounds];
+             } completion:^(BOOL finished) {}];
+        }
     }];
 }
 
@@ -114,13 +124,24 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
 
 - (void) setAnnotationImageForUrlString:(NSString *)imageUrlString {
     [self setImageForAnnotationImage:[UIImage imageNamed:@"portrait"]];
+    __weak UIImageView *weakAnnotationImage = self.annotationImage;
     NSURL *imageUrl = [NSURL URLWithString:imageUrlString];
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:imageUrl] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error loading URL %@", imageUrl);
             return;
         }
-        self.annotationImage.image = [[UIImage imageWithData:data] roundImageFor:self.portratImage.bounds];
+        
+        UIImageView *strongAnnotationImage = weakAnnotationImage;
+        if (strongAnnotationImage != nil) {
+            [UIView transitionWithView: strongAnnotationImage
+                              duration: 0.35f
+                               options: UIViewAnimationOptionTransitionCrossDissolve
+                            animations: ^(void)
+             {
+                 weakAnnotationImage.image = [[UIImage imageWithData:data] roundImageFor:weakAnnotationImage.bounds];
+             } completion:^(BOOL finished) {}];
+        }
     }];
 }
 
