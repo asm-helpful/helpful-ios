@@ -77,7 +77,7 @@ extension UIColor {
 }
 
 extension UIImage {
-    public func roundImageFor(rect: CGRect) -> UIImage {
+    public func roundImageFor(rect: CGRect) -> UIImage? {
         let scale = UIScreen.mainScreen().scale
         let rect = CGRect(x: 0.0, y: 0.0, width: rect.size.width * scale, height: rect.size.height * scale)
         
