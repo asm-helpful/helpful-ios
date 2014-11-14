@@ -51,7 +51,14 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
     [self resetCellContent];
     _message = message;
 
-    self.messageLabel.text = message.body;
+    NSString * htmlString = message.body;
+    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+
+    NSRange attributedRange = NSMakeRange(0, attrStr.length);
+    [attrStr addAttribute:NSFontAttributeName value:self.messageLabel.font range:attributedRange];
+    [attrStr addAttribute:NSForegroundColorAttributeName value:self.messageLabel.textColor range:attributedRange];
+
+    self.messageLabel.attributedText = attrStr;
     self.messageLabel.numberOfLines = 2;
     self.nameMailLabel.text = message.person.name;
     
