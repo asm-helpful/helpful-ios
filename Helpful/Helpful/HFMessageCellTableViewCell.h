@@ -14,6 +14,7 @@
 
 @interface HFMessageCellTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) HFConversation* conversation;
 @property (weak, nonatomic) HFMessage* message;
 @property (weak, nonatomic) HFTagEvent* tagEvent;
 @property (weak, nonatomic) HFAssignmentEvent* assignmentEvent;

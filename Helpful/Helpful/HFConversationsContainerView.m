@@ -8,6 +8,8 @@
 
 #import "HFConversationsContainerView.h"
 
+#import "Helpful-Swift.h"
+
 static CGFloat const HFConversationsContainerViewSegmentedControlPadding = 10.0f;
 
 @interface HFConversationsContainerView ()
@@ -119,7 +121,7 @@ static CGFloat const HFConversationsContainerViewSegmentedControlPadding = 10.0f
 #pragma mark -
 
 - (UIColor *)hf_defaultBackgroundColor {
-    return [UIColor colorWithWhite:245.0f / 255.0f alpha:1.0f];
+    return [UIColor separatorColor];
 }
 
 - (UIColor *)hf_defaultBorderColor {

@@ -47,23 +47,38 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
     return _timeIntervalFormatter;
 }
 
+- (void)setConversation:(HFConversation *) conversation {
+    [self resetCellContent];
+    _conversation = conversation;
+    
+    HFMessage *latestMessage = [conversation.messages lastObject];
+    self.nameMailLabel.text = conversation.subject;
+    self.messageLabel.attributedText = [self attributedStringForMessageBody:latestMessage.body];
+    [self setTimeLabelForDate:latestMessage.created];
+
+    [self setImageForUrlString:conversation.creatorPerson.gravatarUrl];
+}
+
 - (void)setMessage:(HFMessage *)message {
     [self resetCellContent];
     _message = message;
 
-    NSString * htmlString = message.body;
-    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-
-    NSRange attributedRange = NSMakeRange(0, attrStr.length);
-    [attrStr addAttribute:NSFontAttributeName value:self.messageLabel.font range:attributedRange];
-    [attrStr addAttribute:NSForegroundColorAttributeName value:self.messageLabel.textColor range:attributedRange];
-
-    self.messageLabel.attributedText = attrStr;
+    self.messageLabel.attributedText = [self attributedStringForMessageBody:message.body];
     self.messageLabel.numberOfLines = 2;
     self.nameMailLabel.text = message.person.name;
     
     [self setImageForUrlString:message.person.gravatarUrl];
     [self setTimeLabelForDate:message.created];
+}
+
+- (NSAttributedString *)attributedStringForMessageBody:(NSString *)messageBody {
+    NSString * htmlString = messageBody;
+    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    
+    NSRange attributedRange = NSMakeRange(0, attrStr.length);
+    [attrStr addAttribute:NSFontAttributeName value:self.messageLabel.font range:attributedRange];
+    [attrStr addAttribute:NSForegroundColorAttributeName value:self.messageLabel.textColor range:attributedRange];
+    return attrStr;
 }
 
 - (void)setAssignmentEvent:(HFAssignmentEvent *)assignmentEvent {
@@ -168,6 +183,7 @@ static TTTTimeIntervalFormatter *_timeIntervalFormatter;
 }
 
 - (void) resetCellContent {
+    _conversation = nil;
     _message = nil;
     _assignmentEvent = nil;
     _tagEvent = nil;
