@@ -7,6 +7,7 @@
 //
 
 #import "HFConversationsViewController.h"
+#import "HFMessageCellTableViewCell.h"
 
 #import "HFAccount.h"
 #import "HFConversation.h"
@@ -14,12 +15,13 @@
 
 #import "HFMessagesViewController.h"
 
+static NSString * messageCellIdentifier = @"MessageCell";
+
 @interface HFConversationsViewController ()
 
 @property (nonatomic, copy, readwrite) NSArray *conversations;
 
 - (void)hf_fetchConversations;
-- (void)hf_configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -57,9 +59,10 @@
 
 #pragma mark - UIViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HFMessageCellTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellIdentifier];
+
     if (!self.conversations) {
         [self hf_fetchConversations];
     }
@@ -76,22 +79,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
-    }
+    HFMessageCellTableViewCell *cell = (HFMessageCellTableViewCell *)[tableView dequeueReusableCellWithIdentifier:messageCellIdentifier forIndexPath:indexPath];
     
-    [self hf_configureCell:cell atIndexPath:indexPath];
+    HFConversation *conversation = self.conversations[indexPath.row];
+    cell.conversation = conversation;
     
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    HFConversation *conversation = self.conversations[indexPath.row];
-    [self hf_presentMessagesForConversation:conversation];
+    HFMessagesViewController *controller = [[HFMessagesViewController alloc] initWithConversations:self.conversations];
+    controller.currentConversationIndex = indexPath.row;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - Private Methods
@@ -116,18 +125,6 @@
         NSLog(@"could not fetch conversations: %@", error);
     }];
     [operation start];
-}
-
-- (void)hf_configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    HFConversation *conversation = self.conversations[indexPath.row];
-    HFMessage *latestMessage = [conversation.messages lastObject];
-    cell.textLabel.text = conversation.subject;
-    cell.detailTextLabel.text = latestMessage.body;
-}
-
-- (void)hf_presentMessagesForConversation:(HFConversation *)conversation {
-    HFMessagesViewController *controller = [[HFMessagesViewController alloc] initWithConversation:conversation];
-    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

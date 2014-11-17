@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 
-@class HFAccount;
+@class HFAccount, HFPerson;
 
 /// Represents a conversation.
 @interface HFConversation : NSObject
@@ -27,11 +27,19 @@
 @property (nonatomic, strong) NSDate *updated;
 
 // A set of tags. Optional.
-// TODO: implement this!
 @property (nonatomic, copy) NSSet *tags;
 
 // An array of messages. Always contains at least one message.
 @property (nonatomic, copy) NSArray *messages;
+
+// An array of tag events. Can be empty.
+@property (nonatomic, copy) NSArray *tagEvents;
+
+// An array of assignment events. Can be empty.
+@property (nonatomic, copy) NSArray *assignmentEvents;
+
+/// The person that created that message.
+@property (nonatomic, strong) HFPerson *creatorPerson;
 
 // TODO: what's the purpose of this?
 @property (nonatomic, strong) NSNumber *number;

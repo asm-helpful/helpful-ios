@@ -9,6 +9,9 @@
 #import "HFConversation.h"
 #import "HFMessage.h"
 #import "HFAccount.h"
+#import "HFTagEvent.h"
+#import "HFPerson.h"
+#import "HFAssignmentEvent.h"
 
 #import "NSNumber+HFAdditions.h"
 
@@ -32,7 +35,8 @@
                                @"subject": HFTypedKeyPath(HFConversation, subject),
                                @"created": HFTypedKeyPath(HFConversation, created),
                                @"updated": HFTypedKeyPath(HFConversation, updated),
-                               @"number": HFTypedKeyPath(HFConversation, number)};
+                               @"number": HFTypedKeyPath(HFConversation, number),
+                               @"tags": HFTypedKeyPath(HFConversation, tags)};
         [mapping addAttributeMappingsFromDictionary:dict];
         
         // Add message relationship mapping.
@@ -40,7 +44,19 @@
         RKRelationshipMapping *messagesRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"messages" toKeyPath:HFTypedKeyPath(HFConversation, messages) withMapping:messageMapping];
         [mapping addPropertyMapping:messagesRelationship];
         
-        // TODO: map tags
+        // Add tagEvent mapping.
+        RKObjectMapping *tagEventMapping = [HFTagEvent objectMapping];
+        RKRelationshipMapping *tagEventRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"tag_events" toKeyPath:HFTypedKeyPath(HFConversation, tagEvents) withMapping:tagEventMapping];
+        [mapping addPropertyMapping:tagEventRelationship];
+
+        RKObjectMapping *assignmentEventMapping = [HFAssignmentEvent objectMapping];
+        RKRelationshipMapping *assignmentEventRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"assignment_events" toKeyPath:HFTypedKeyPath(HFConversation, assignmentEvents) withMapping:assignmentEventMapping];
+        [mapping addPropertyMapping:assignmentEventRelationship];
+
+        RKObjectMapping *creatorMapping = [HFPerson objectMapping];
+        RKRelationshipMapping *creatorRelationship = [RKRelationshipMapping relationshipMappingFromKeyPath:@"creator_person" toKeyPath:HFTypedKeyPath(HFConversation, creatorPerson) withMapping:creatorMapping];
+        [mapping addPropertyMapping:creatorRelationship];
+
     });
     return mapping;
 }

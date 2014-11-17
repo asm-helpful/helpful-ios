@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSansLight.ttf">
+            <string>OpenSans</string>
+        </mutableArray>
+        <mutableArray key="OpenSansRegular.ttf">
+            <string>OpenSans-Semibold</string>
+            <string>OpenSans-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HFMessageCellTableViewCell"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="57" selectionStyle="default" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="HFMessageCellTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait" translatesAutoresizingMaskIntoConstraints="NO" id="wAL-iD-M8n">
+                        <rect key="frame" x="8" y="8" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="ETn-Jm-z7S"/>
+                            <constraint firstAttribute="width" secondItem="wAL-iD-M8n" secondAttribute="height" multiplier="40:40" id="lCs-7H-YVy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="800" verticalCompressionResistancePriority="800" placeholderIntrinsicWidth="90" placeholderIntrinsicHeight="24" text="name / mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="7rM-RQ-lgp">
+                        <rect key="frame" x="56" y="8" width="198" height="24"/>
+                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans Semibold" pointSize="13"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.34509803921568627" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="800" verticalCompressionResistancePriority="800" text="message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="XaN-ba-gGn">
+                        <rect key="frame" x="56" y="32" width="198" height="16.5"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.34509803921568627" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9X-Mo-84f">
+                        <rect key="frame" x="262" y="8" width="50" height="16.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="Ze5-an-zeN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans Semibold" pointSize="12"/>
+                        <color key="textColor" red="0.21176470588235294" green="0.22352941176470587" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YIs-9u-TdK">
+                        <constraints>
+                            <constraint firstAttribute="height" id="Qaj-gn-ZCl"/>
+                            <constraint firstAttribute="width" id="mhk-M3-9GL"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="XaN-ba-gGn" firstAttribute="top" secondItem="7rM-RQ-lgp" secondAttribute="bottom" id="Abn-lD-eSj"/>
+                    <constraint firstItem="Y9X-Mo-84f" firstAttribute="leading" secondItem="7rM-RQ-lgp" secondAttribute="trailing" constant="8" id="D21-Zi-GIu"/>
+                    <constraint firstItem="7rM-RQ-lgp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="KUX-B3-iYE"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Y9X-Mo-84f" secondAttribute="trailing" id="KV2-ks-vCy"/>
+                    <constraint firstItem="7rM-RQ-lgp" firstAttribute="leading" secondItem="wAL-iD-M8n" secondAttribute="trailing" constant="8" id="LdB-xv-BVM"/>
+                    <constraint firstItem="Y9X-Mo-84f" firstAttribute="leading" secondItem="XaN-ba-gGn" secondAttribute="trailing" constant="8" id="NMz-ny-fm5"/>
+                    <constraint firstItem="XaN-ba-gGn" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Rr7-P2-vo7"/>
+                    <constraint firstItem="YIs-9u-TdK" firstAttribute="top" secondItem="XaN-ba-gGn" secondAttribute="bottom" id="XqR-E4-sJM"/>
+                    <constraint firstItem="Y9X-Mo-84f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="i6L-x2-gBi"/>
+                    <constraint firstItem="XaN-ba-gGn" firstAttribute="top" secondItem="7rM-RQ-lgp" secondAttribute="bottom" id="mr2-Ny-WC8"/>
+                    <constraint firstItem="YIs-9u-TdK" firstAttribute="leading" secondItem="XaN-ba-gGn" secondAttribute="leading" id="nTM-Vc-XJm"/>
+                    <constraint firstItem="wAL-iD-M8n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="obW-Sa-VqW"/>
+                    <constraint firstItem="XaN-ba-gGn" firstAttribute="leading" secondItem="wAL-iD-M8n" secondAttribute="trailing" constant="8" id="tUi-8P-8y9"/>
+                    <constraint firstItem="wAL-iD-M8n" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="xWP-wm-ddT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="76" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="annotationImage" destination="YIs-9u-TdK" id="46T-Am-gRU"/>
+                <outlet property="annotationImageHeightConstraint" destination="Qaj-gn-ZCl" id="qLb-Do-NWk"/>
+                <outlet property="annotationImageWidthConstraint" destination="mhk-M3-9GL" id="a5T-0m-LeC"/>
+                <outlet property="messageBottomConstraint" destination="Rr7-P2-vo7" id="ZcO-a3-Oac"/>
+                <outlet property="messageLabel" destination="XaN-ba-gGn" id="6Wq-nH-J8v"/>
+                <outlet property="nameMailLabel" destination="7rM-RQ-lgp" id="s2d-TG-7Cv"/>
+                <outlet property="portratImage" destination="wAL-iD-M8n" id="2ef-uG-Shh"/>
+                <outlet property="timeLabel" destination="Y9X-Mo-84f" id="Wiy-2I-wmT"/>
+            </connections>
+            <point key="canvasLocation" x="257" y="197.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="portrait" width="28" height="28"/>
+    </resources>
+</document>

@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A11C7121A096E22003187B8 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A11C7111A096E22003187B8 /* Launch Screen.xib */; };
+		4A11C7181A097596003187B8 /* HFMessageCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A11C7161A097596003187B8 /* HFMessageCellTableViewCell.m */; };
+		4A11C7191A097596003187B8 /* HFMessageCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A11C7171A097596003187B8 /* HFMessageCellTableViewCell.xib */; };
+		4A1F58031A09E100002703D2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1F58021A09E100002703D2 /* Extensions.swift */; };
+		4A7EAC4D1A0E241C006D5FAA /* HFTagEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7EAC4C1A0E241C006D5FAA /* HFTagEvent.m */; };
+		4A7EAC501A0E2460006D5FAA /* HFAssignmentEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7EAC4F1A0E2460006D5FAA /* HFAssignmentEvent.m */; };
+		4A7EAC531A0E2881006D5FAA /* HFAssignee.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7EAC521A0E2881006D5FAA /* HFAssignee.m */; };
 		4A88D8D21A04C71600B785B0 /* HFMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */; };
 		4ADA2A1E1A0951D1000C03DA /* HFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA2A1D1A0951D1000C03DA /* HFPerson.m */; };
+		4ADE28041A0D67C7008F2363 /* OpenSansBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADE28011A0D67C7008F2363 /* OpenSansBold.ttf */; };
+		4ADE28051A0D67C7008F2363 /* OpenSansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADE28021A0D67C7008F2363 /* OpenSansLight.ttf */; };
+		4ADE28061A0D67C7008F2363 /* OpenSansRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADE28031A0D67C7008F2363 /* OpenSansRegular.ttf */; };
 		4C8A5F42ADA44963A8B5A023 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210EA750C6A2416A94B2E18E /* libPods.a */; };
 		756BF6A7184B389000423025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756BF6A6184B389000423025 /* Foundation.framework */; };
 		756BF6A9184B389000423025 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756BF6A8184B389000423025 /* CoreGraphics.framework */; };
@@ -48,10 +58,25 @@
 
 /* Begin PBXFileReference section */
 		210EA750C6A2416A94B2E18E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A11C7111A096E22003187B8 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "../Launch Screen.xib"; sourceTree = "<group>"; };
+		4A11C7151A097596003187B8 /* HFMessageCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFMessageCellTableViewCell.h; sourceTree = "<group>"; };
+		4A11C7161A097596003187B8 /* HFMessageCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFMessageCellTableViewCell.m; sourceTree = "<group>"; };
+		4A11C7171A097596003187B8 /* HFMessageCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HFMessageCellTableViewCell.xib; sourceTree = "<group>"; };
+		4A1F58011A09E0FF002703D2 /* Helpful-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Helpful-Bridging-Header.h"; sourceTree = "<group>"; };
+		4A1F58021A09E100002703D2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4A7EAC4B1A0E241C006D5FAA /* HFTagEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFTagEvent.h; sourceTree = "<group>"; };
+		4A7EAC4C1A0E241C006D5FAA /* HFTagEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFTagEvent.m; sourceTree = "<group>"; };
+		4A7EAC4E1A0E2460006D5FAA /* HFAssignmentEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFAssignmentEvent.h; sourceTree = "<group>"; };
+		4A7EAC4F1A0E2460006D5FAA /* HFAssignmentEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFAssignmentEvent.m; sourceTree = "<group>"; };
+		4A7EAC511A0E2881006D5FAA /* HFAssignee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFAssignee.h; sourceTree = "<group>"; };
+		4A7EAC521A0E2881006D5FAA /* HFAssignee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFAssignee.m; sourceTree = "<group>"; };
 		4A88D8D01A04C71600B785B0 /* HFMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFMessagesViewController.h; sourceTree = "<group>"; };
 		4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFMessagesViewController.m; sourceTree = "<group>"; };
 		4ADA2A1C1A0951D1000C03DA /* HFPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFPerson.h; sourceTree = "<group>"; };
 		4ADA2A1D1A0951D1000C03DA /* HFPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFPerson.m; sourceTree = "<group>"; };
+		4ADE28011A0D67C7008F2363 /* OpenSansBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansBold.ttf; sourceTree = "<group>"; };
+		4ADE28021A0D67C7008F2363 /* OpenSansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansLight.ttf; sourceTree = "<group>"; };
+		4ADE28031A0D67C7008F2363 /* OpenSansRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansRegular.ttf; sourceTree = "<group>"; };
 		756BF6A3184B389000423025 /* Helpful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Helpful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		756BF6A6184B389000423025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		756BF6A8184B389000423025 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -123,11 +148,16 @@
 		756BF69A184B389000423025 = {
 			isa = PBXGroup;
 			children = (
+				4A1F58021A09E100002703D2 /* Extensions.swift */,
+				4ADE28011A0D67C7008F2363 /* OpenSansBold.ttf */,
+				4ADE28021A0D67C7008F2363 /* OpenSansLight.ttf */,
+				4ADE28031A0D67C7008F2363 /* OpenSansRegular.ttf */,
 				756BF6AC184B389100423025 /* Helpful */,
 				756BF6CB184B389100423025 /* HelpfulTests */,
 				756BF6A5184B389000423025 /* Frameworks */,
 				756BF6A4184B389000423025 /* Products */,
 				8401515BC1B291CF36439B61 /* Pods */,
+				4A1F58011A09E0FF002703D2 /* Helpful-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,6 +192,7 @@
 				756BF6B5184B389100423025 /* HFAppDelegate.h */,
 				756BF6B6184B389100423025 /* HFAppDelegate.m */,
 				756BF6BE184B389100423025 /* Images.xcassets */,
+				4A11C7111A096E22003187B8 /* Launch Screen.xib */,
 				756BF6AD184B389100423025 /* Supporting Files */,
 			);
 			path = Helpful;
@@ -220,6 +251,12 @@
 				8C67C01518E9D40900A7BC51 /* HFMessage.m */,
 				4ADA2A1C1A0951D1000C03DA /* HFPerson.h */,
 				4ADA2A1D1A0951D1000C03DA /* HFPerson.m */,
+				4A7EAC4B1A0E241C006D5FAA /* HFTagEvent.h */,
+				4A7EAC4C1A0E241C006D5FAA /* HFTagEvent.m */,
+				4A7EAC4E1A0E2460006D5FAA /* HFAssignmentEvent.h */,
+				4A7EAC4F1A0E2460006D5FAA /* HFAssignmentEvent.m */,
+				4A7EAC511A0E2881006D5FAA /* HFAssignee.h */,
+				4A7EAC521A0E2881006D5FAA /* HFAssignee.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -256,6 +293,9 @@
 				8C67C01B18E9D86800A7BC51 /* HFAccountsViewController.m */,
 				4A88D8D01A04C71600B785B0 /* HFMessagesViewController.h */,
 				4A88D8D11A04C71600B785B0 /* HFMessagesViewController.m */,
+				4A11C7151A097596003187B8 /* HFMessageCellTableViewCell.h */,
+				4A11C7161A097596003187B8 /* HFMessageCellTableViewCell.m */,
+				4A11C7171A097596003187B8 /* HFMessageCellTableViewCell.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -339,8 +379,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ADE28061A0D67C7008F2363 /* OpenSansRegular.ttf in Resources */,
+				4ADE28051A0D67C7008F2363 /* OpenSansLight.ttf in Resources */,
 				8C30DDDA18E60C0E00FC80F8 /* HFLoginViewController.xib in Resources */,
+				4A11C7121A096E22003187B8 /* Launch Screen.xib in Resources */,
 				756BF6BF184B389100423025 /* Images.xcassets in Resources */,
+				4A11C7191A097596003187B8 /* HFMessageCellTableViewCell.xib in Resources */,
+				4ADE28041A0D67C7008F2363 /* OpenSansBold.ttf in Resources */,
 				756BF6B1184B389100423025 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,15 +442,20 @@
 				8C30DDD918E60C0E00FC80F8 /* HFLoginViewController.m in Sources */,
 				4A88D8D21A04C71600B785B0 /* HFMessagesViewController.m in Sources */,
 				8C67C01618E9D40900A7BC51 /* HFMessage.m in Sources */,
+				4A7EAC531A0E2881006D5FAA /* HFAssignee.m in Sources */,
 				4ADA2A1E1A0951D1000C03DA /* HFPerson.m in Sources */,
 				756BF6B7184B389100423025 /* HFAppDelegate.m in Sources */,
 				8C67C01C18E9D86800A7BC51 /* HFAccountsViewController.m in Sources */,
 				8C4C311F18EF3A2000A2F490 /* HFConversationsContainerView.m in Sources */,
 				8C4C311618EF352B00A2F490 /* NSNumber+HFAdditions.m in Sources */,
+				4A7EAC4D1A0E241C006D5FAA /* HFTagEvent.m in Sources */,
+				4A7EAC501A0E2460006D5FAA /* HFAssignmentEvent.m in Sources */,
 				8C30DDDE18E60C7200FC80F8 /* HFCredentials.m in Sources */,
 				8CC5A2FF18E61C5A00177D11 /* HFAccount.m in Sources */,
+				4A1F58031A09E100002703D2 /* Extensions.swift in Sources */,
 				756BF6B3184B389100423025 /* main.m in Sources */,
 				8C4C311C18EF362200A2F490 /* HFConversationsContainerViewController.m in Sources */,
+				4A11C7181A097596003187B8 /* HFMessageCellTableViewCell.m in Sources */,
 				8C67C01318E9D37600A7BC51 /* HFConversation.m in Sources */,
 				8CC5A2FC18E611C100177D11 /* HFConversationsViewController.m in Sources */,
 			);
@@ -481,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -513,7 +563,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -525,10 +575,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Helpful/Helpful-Prefix.pch";
 				INFOPLIST_FILE = "Helpful/Helpful-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Helpful-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -539,10 +593,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Helpful/Helpful-Prefix.pch";
 				INFOPLIST_FILE = "Helpful/Helpful-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Helpful-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
